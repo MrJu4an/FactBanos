@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/txtVTitList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Pto | Datos Pasajero"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+        <requestFocus />
+    </TextView>
+
+    <ListView
+        android:id="@+id/listVPasajeros"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/txtVTitList"/>
+
+</RelativeLayout>

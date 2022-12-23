@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Facturacion Baños</string>
+    <string name="title_activity_config">Pantalla de Configuracion</string>
+    <string name="title_activity_main">Facturacion Baños</string>
+    <string name="title_activity_menu">Menu Principal</string>
+    <string name="title_activity_venta_tiq">Facturación Baños</string>
+    <string name="actulizarApk">Actualizar Software</string>
+    <string name="descargaDatos">Descarga Datos</string>
+    <string name="accesoConf">Configuracion</string>
+    <string name="title_activity_buscar">BuscarActivity</string>
+    <string name="nuevoreg">Nuevo Registro</string>
+    <string name="reimplibro">Reimprimir Libro</string>
+    <string name="cerrarlibro">Cerrar Libro</string>
+    <string name="saliract">Salir...</string>
+</resources>

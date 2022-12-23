@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReImpTiqActivity">
+
+    <EditText
+        android:id="@+id/edTHora"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:hint="HH:MM"
+        android:imeOptions="actionNext"
+        android:inputType="time"
+        android:maxLength="5"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/txtlblCaja"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edTCedula"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:nextFocusUp="@id/edTNombres"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVTiquete"
+        app:layout_constraintTop_toBottomOf="@+id/edTFlibro" />
+
+
+
+    <EditText
+        android:id="@+id/edTCodRuta"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLength="7"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/txtVCedula" />
+
+    <TextView
+        android:id="@+id/txtVCedula"
+        android:layout_width="166dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:text="Cedula Pasajero"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVTiquete" />
+
+    <Button
+        android:id="@+id/btnBuscarTiq"
+        android:layout_width="228dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btnverde"
+        android:onClick="BuscarTiquete"
+        android:text="Buscar Tiquetes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVNomRuta" />
+
+    <Button
+        android:id="@+id/btnObtFecha"
+        android:layout_width="34dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/calendar"
+        app:layout_constraintStart_toEndOf="@+id/edTFlibro"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVUsuario"
+        android:layout_width="55dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:text="Ruta"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVCedula" />
+
+    <Button
+        android:id="@+id/btnBuscarRut"
+        android:layout_width="31dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/search"
+        app:layout_constraintStart_toEndOf="@+id/txtVNomRuta"
+        app:layout_constraintTop_toBottomOf="@+id/edTCedula" />
+
+    <TextView
+        android:id="@+id/txtVNomRuta"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNone"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/edTCodRuta"
+        app:layout_constraintTop_toBottomOf="@+id/txtVCedula" />
+
+    <TextView
+        android:id="@+id/txtlblCaja"
+        android:layout_width="50dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:text="Hora"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/btnObtFecha"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVFecha"
+        android:layout_width="60dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Fecha"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVTiquete"
+        android:layout_width="166dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="19dp"
+        android:text="Numero Tiquete"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVFecha" />
+
+    <EditText
+        android:id="@+id/edTFlibro"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:focusable="auto"
+        android:hint="DD/MM/YYYY"
+        android:imeOptions="actionNext"
+        android:inputType="date"
+        android:nextFocusUp="@id/edTHora"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVFecha"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/edTmovil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtVCedula"
+        app:layout_constraintTop_toBottomOf="@+id/edTCedula" />
+</android.support.constraint.ConstraintLayout>

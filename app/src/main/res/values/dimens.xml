@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="TextView_height">29dp</dimen>
+    <dimen name="EditView_height">40dp</dimen>
+</resources>

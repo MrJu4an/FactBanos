@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DevolverTiqActivity">
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="129dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="28dp"
+        android:background="@drawable/btnrojo"
+        android:onClick="onClick"
+        android:text="SALIR"
+        app:layout_constraintStart_toEndOf="@+id/btnGrabar"
+        app:layout_constraintTop_toTopOf="@+id/btnGrabar" />
+
+    <Button
+        android:id="@+id/btnGrabar"
+        android:layout_width="129dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btnverde"
+        android:onClick="grabarTransaccion"
+        android:text="Devolver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVValor" />
+
+    <EditText
+        android:id="@+id/edTCodAgencia"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLength="7"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVBano" />
+
+    <EditText
+        android:id="@+id/edTNumLibro"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLength="7"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/edTCodAgencia"
+        app:layout_constraintTop_toBottomOf="@+id/txtVLibro" />
+
+    <EditText
+        android:id="@+id/edTNumTiquete"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLength="7"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/edTNumLibro"
+        app:layout_constraintTop_toBottomOf="@+id/txtVTiquete" />
+
+    <EditText
+        android:id="@+id/edTValorDev"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal"
+        android:maxLength="7"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVValor"
+        app:layout_constraintTop_toBottomOf="@+id/spMovTrans" />
+
+    <TextView
+        android:id="@+id/txtVValor"
+        android:layout_width="177dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:text="Valor a Devolver"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spMovTrans" />
+
+    <EditText
+        android:id="@+id/edTCodTran"
+        android:layout_width="141dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/border_edit_text"
+        android:ems="10"
+        android:enabled="false"
+        android:focusable="false"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLength="7"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCancelar" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="330dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTNumLibro">
+
+        <RadioButton
+            android:id="@+id/rdoBtnGrabar"
+            android:layout_width="160dp"
+            android:layout_height="43dp"
+            android:background="@drawable/border_edit_text"
+            android:onClick="onClick"
+            android:text="Devolver "
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/rdoBtnAnular"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:background="@drawable/border_edit_text"
+            android:onClick="onClick"
+            android:text="Anular "
+            android:textSize="22sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtVTiquete"
+        android:layout_width="90dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="Tiquete"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVLibro"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVCodigoMot"
+        android:layout_width="325dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Motivo Transacción"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/txtVLibro"
+        android:layout_width="60dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="16dp"
+        android:text="Libro"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVBano"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVBano"
+        android:layout_width="90dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Agencia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spMovTrans"
+        android:layout_width="329dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/border_edit_text"
+        android:popupElevation="25dp"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVCodigoMot" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,3 @@
+Este modulo usa una Api suministrada por TransNet, empresada proveedora de Coonorte.
+Puerto prueba: http://201.184.241.100:63780
+Puerto producción: http://201.184.241.100:52520
