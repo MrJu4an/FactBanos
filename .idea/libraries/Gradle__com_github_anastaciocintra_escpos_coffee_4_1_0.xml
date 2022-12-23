@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.anastaciocintra:escpos-coffee:4.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.anastaciocintra/escpos-coffee/4.1.0/2e7277a03e764bbc4fea82e58c87808c60ff0e5/escpos-coffee-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.anastaciocintra/escpos-coffee/4.1.0/2dd17301f35b7a72bc38e214d349d0b6a5bceb9b/escpos-coffee-4.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.anastaciocintra/escpos-coffee/4.1.0/f0790c3a74dbfc2d43e672ecaa2456153725eb90/escpos-coffee-4.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

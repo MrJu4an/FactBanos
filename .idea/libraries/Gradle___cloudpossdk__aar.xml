@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: :cloudpossdk:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4a5e9db34784a589122ec500cf73fb34/transformed/cloudpossdk/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4a5e9db34784a589122ec500cf73fb34/transformed/cloudpossdk/jars/libs/cloudpossdkinterface_en.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4a5e9db34784a589122ec500cf73fb34/transformed/cloudpossdk/jars/libs/cloudpossdkinterfaceimpl_001_en.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4a5e9db34784a589122ec500cf73fb34/transformed/cloudpossdk/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4a5e9db34784a589122ec500cf73fb34/transformed/cloudpossdk/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -276,6 +276,18 @@ public class MainActivity extends AppCompatActivity {
                 bandescarga = 0;
             }
 
+            Global.g_HostImp = readPreference("Host");
+            if (Global.g_HostImp.equals("") || Global.g_HostImp.equals("-1")) {
+                mensaje.MensajeAdvertencia(MainActivity.this,"Advertencia","Dato Host de impresora vacio ");
+                return false;
+            }
+
+            Global.g_portImp = readPreference("Port");
+            if (Global.g_portImp.equals("") || Global.g_portImp.equals("-1")) {
+                mensaje.MensajeAdvertencia(MainActivity.this,"Advertencia","Dato Puerto de impresora vacio ");
+                return false;
+            }
+
             /*Global.g_ValorConcep = Double.parseDouble(readPreference("ValConcep"));
             if ( Global.g_ValorConcep.equals("") || Global.g_ValorConcep.toString().equals("-1")) {
                 bandescarga = 0;
