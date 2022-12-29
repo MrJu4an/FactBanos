@@ -8,11 +8,11 @@
     tools:context=".MenuActivity">
 
     <ScrollView
-        android:layout_width="395dp"
-        android:layout_height="643dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="580dp"
+        android:layout_height="618dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,11 +36,12 @@
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#00FFFFFF">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="160dp"
+                        android:layout_height="190dp"
                         android:background="@drawable/fondosec"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -67,6 +68,12 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:layout_weight="3" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardCuadreCaj"
@@ -121,11 +128,12 @@
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#005F76F6">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="162dp"
+                        android:layout_height="185dp"
                         android:background="@drawable/fondosec"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -152,6 +160,12 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardCerrarCaja"
@@ -208,11 +222,12 @@
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#00FFFFFF">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="156dp"
+                        android:layout_height="186dp"
                         android:background="@drawable/fondosec"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -239,6 +254,12 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardAnuDevTiq"

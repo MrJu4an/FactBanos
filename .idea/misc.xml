@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_buscar.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_cambia_contrasena.xml" value="0.5" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_cierre_caja.xml" value="0.25" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_config.xml" value="0.5" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_cuadre_caja.xml" value="0.67" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_devolver_tiq.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_documentos_gen.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_fac_banos.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_list_pasajeros.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_main.xml" value="0.67" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_menu.xml" value="0.5" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/activity_reimp_tiq.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/listview_detalle.xml" value="1.5" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/listview_detcierre.xml" value="0.67" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/listview_item.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/layout/listview_pasajero.xml" value="0.41015625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/menu/menu_main.xml" value="0.3603515625" />
+        <entry key="..\:/Users/jsabogal/Documents/Desarrollo/Git/FactBanos/app/src/main/res/menu/menu_main_venta_tiq.xml" value="0.3603515625" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -8,12 +8,13 @@
     android:background="@drawable/fondopri"
     >
 
+
     <TextView
         android:id="@+id/txtVlbluser"
         android:layout_width="315dp"
         android:layout_height="0dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="48dp"
         android:text="CAJA"
         android:textAlignment="center"
@@ -25,17 +26,33 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
+        android:id="@+id/edTNewPassWord"
+        android:layout_width="210dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/dialog_background"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtVPassword2"
+        app:layout_constraintTop_toBottomOf="@+id/edTPassWord" />
+
+    <EditText
         android:id="@+id/edTUsuario"
         android:layout_width="210dp"
         android:layout_height="44dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/dialog_background"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="@android:color/background_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtVUsuario"
         app:layout_constraintTop_toBottomOf="@+id/txtVlbluser" />
@@ -44,52 +61,8 @@
         android:id="@+id/txtVPassword2"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:text="Contraseña"
-        android:textColor="@color/button_text_color"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
-
-
-    <EditText
-        android:id="@+id/edTPassWord"
-        android:layout_width="210dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/dialog_background"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:textColor="@android:color/background_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVPassword2"
-        app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
-
-    <TextView
-        android:id="@+id/txtVUsuario"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:text="Usuario"
-        android:textColor="@color/button_text_color"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVlbluser" />
-
-
-    <TextView
-        android:id="@+id/txtVPassword2"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="20dp"
         android:text="Nueva Contraseña"
         android:textColor="@color/button_text_color"
         android:textSize="18sp"
@@ -97,13 +70,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTPassWord" />
 
+    <TextView
+        android:id="@+id/txtVUsuario"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="28dp"
+        android:text="Usuario"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVlbluser" />
+
+    <Button
+        android:id="@+id/btnAcceso"
+        android:layout_width="232dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/btnazul"
+        android:text="Cambiar Contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVFecha" />
 
     <TextView
         android:id="@+id/txtVPassword2"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="20dp"
         android:text="Confirmar Nueva Contraseña"
         android:textColor="@color/button_text_color"
         android:textSize="18sp"
@@ -111,51 +109,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTNewPassWord" />
 
+    <TextView
+        android:id="@+id/txtVPassword2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="8dp"
+        android:text="Contraseña"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
+
     <EditText
-        android:id="@+id/edTNewPassWord"
+        android:id="@+id/edTPassWord"
         android:layout_width="210dp"
         android:layout_height="44dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/dialog_background"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="@android:color/background_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtVPassword2"
-        app:layout_constraintTop_toBottomOf="@+id/edTPassWord" />
+        app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
 
     <EditText
         android:id="@+id/edTNewPassWord2"
         android:layout_width="210dp"
         android:layout_height="44dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/dialog_background"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="@android:color/background_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtVPassword2"
         app:layout_constraintTop_toBottomOf="@+id/edTNewPassWord" />
 
-    <Button
-        android:id="@+id/btnAcceso"
-        android:layout_width="232dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btnazul"
-        android:text="Cambiar Contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <TextView
+        android:id="@+id/txtVFecha"
+        android:layout_width="315dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="352dp"
+        android:layout_marginTop="84dp"
+        android:text="Fecha"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/edTNewPassWord2" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -194,18 +204,5 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/txtVFecha"
-        android:layout_width="315dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="Fecha"
-        android:textColor="@color/button_text_color"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTNewPassWord2" />
 
 </android.support.constraint.ConstraintLayout>
