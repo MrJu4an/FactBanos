@@ -413,7 +413,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                             .writeLF(fecha)
                             .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
                             .write(bold, "Caja: " + Global.g_Caja)
-                            .writeLF(" Cod Usu: " + Global.g_Usuario)
+                            .writeLF(" Codigo Usuario: " + Global.g_Usuario)
                             .writeLF("Usuario: " + Global.g_User.getUsuario())
                             .feed(2)
                             .writeLF("  CONCEPTO    |USOS|   IMP |   FACTs |   Total")
@@ -445,7 +445,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                             .writeLF(center,"----------------------------------------------")
                             .writeLF("FIRMA TAQUILLERO")
                             .feed(1)
-                            .writeLF(resolucion, "FacBanos. Consultores Tecnologicos S.A.S")
+                            .writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
                             .feed(3)
                             .cut(EscPos.CutMode.FULL);
                     escPos.feed(1);

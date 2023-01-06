@@ -508,10 +508,10 @@ public class FacBanosActivity extends AppCompatActivity {
                             .writeLF(subtitle, "REGIMEN COMUN")
                             .feed(2)
                             .writeLF(fecha)
-                            .writeLF("FACT. VENTA No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                            .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                             .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
                             .write(bold, "Caja: " + Global.g_Caja)
-                            .writeLF(" Cod Usu: " + Global.g_Usuario)
+                            .writeLF(" Codigo Usuario: " + Global.g_Usuario)
                             .writeLF("Usuario: " + Global.g_User.getUsuario())
                             .feed(2)
                             .writeLF(subtitle, "CLIENTE")
@@ -531,7 +531,7 @@ public class FacBanosActivity extends AppCompatActivity {
                             .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
                             .feed(1)
                             .writeLF(center,"----------------------------------------------")
-                            .writeLF(resolucion, "FacBanos. Consultores Tecnologicos S.A.S")
+                            .writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
                             .feed(3)
                             .cut(EscPos.CutMode.FULL);
                     escPos.feed(1);
