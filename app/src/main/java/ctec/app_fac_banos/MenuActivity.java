@@ -12,7 +12,12 @@ import android.view.WindowManager;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.github.anastaciocintra.escpos.EscPos;
+import com.github.anastaciocintra.escpos.EscPosConst;
+import com.github.anastaciocintra.escpos.Style;
+import com.github.anastaciocintra.output.TcpIpOutputStream;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,10 +50,14 @@ public class MenuActivity extends AppCompatActivity {
         cardSalir = findViewById(R.id.cardSalida);
 
         setTitle("Menu Principal");
-
         cardVentaTiq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Datos impresora
+                String host = Global.g_HostImp;
+                Integer port = Integer.parseInt(Global.g_portImp);
+                probarImpresora(host, port);
+
                 startActivity(new Intent(MenuActivity.this, FacBanosActivity.class));
             }
         });
@@ -107,6 +116,37 @@ public class MenuActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
+
+
+    }
+
+    public void probarImpresora(String host, int port){
+        try{
+            final Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try(TcpIpOutputStream outputStream = new TcpIpOutputStream(host, port)) {
+                        EscPos escpos = new EscPos(outputStream);
+                        Style title = new Style()
+                                .setFontSize(Style.FontSize._2, Style.FontSize._2)
+                                .setJustification(EscPosConst.Justification.Center);
+                        escpos.writeLF(title, "Bienvenido")
+                        .feed(5)
+                        .cut(EscPos.CutMode.FULL);
+
+                    } catch (IOException e){
+                        mensaje.MensajeAdvertencia(MenuActivity.this,"Advertencia","No se pudo conectar con la impresora. \n" + e.getMessage() );
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+        } catch (Exception e){
+            mensaje.MensajeAdvertencia(MenuActivity.this,"Advertencia","No se pudo conectar con la impresora. \n" + e.getMessage() );
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -115,7 +155,6 @@ public class MenuActivity extends AppCompatActivity {
         if (readPreference("sesion").equals("0"))
             finish();
     }
-
 
     @Override
     public void onBackPressed() {
