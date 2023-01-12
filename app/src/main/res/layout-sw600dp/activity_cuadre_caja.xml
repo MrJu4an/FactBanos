@@ -11,59 +11,48 @@
         android:id="@+id/listVDetalle"
         android:layout_width="345dp"
         android:layout_height="440dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVNomUsuario">
 
     </ListView>
 
-    <Button
-        android:id="@+id/btnImpCuadre"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/printer"
-        android:enabled="false"
-        app:layout_constraintStart_toEndOf="@+id/txtVNomUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/txtVNomBano" />
-
     <TextView
-        android:id="@+id/txtVNomBano"
-        android:layout_width="240dp"
+        android:id="@+id/txtVotalCaja"
+        android:layout_width="wrap_content"
         android:layout_height="37dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/border_edit_text"
         android:ems="10"
         android:imeOptions="actionNone"
         android:inputType="text"
         android:maxLines="1"
-        android:textAlignment="viewStart"
+        android:text="0"
+        android:textAlignment="viewEnd"
         android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/txtVBano"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVTotal"
+        app:layout_constraintTop_toBottomOf="@+id/listVDetalle" />
 
-    <TextView
-        android:id="@+id/txtVBano"
-        android:layout_width="90dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="Baño"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btnImpCuadre"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/printer"
+        android:enabled="false"
+        app:layout_constraintStart_toEndOf="@+id/txtVNomUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/txtVNomBano" />
 
     <TextView
         android:id="@+id/txtVUsuario"
         android:layout_width="90dp"
         android:layout_height="29dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="20dp"
         android:text="Usuario"
         android:textColor="@android:color/black"
         android:textSize="22sp"
@@ -71,23 +60,11 @@
         app:layout_constraintTop_toBottomOf="@+id/txtVBano" />
 
     <TextView
-        android:id="@+id/txtVTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="Total Caja "
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listVDetalle" />
-
-    <TextView
         android:id="@+id/txtVNomUsuario"
         android:layout_width="190dp"
         android:layout_height="37dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/border_edit_text"
         android:ems="10"
         android:imeOptions="actionNone"
@@ -100,21 +77,44 @@
         app:layout_constraintTop_toBottomOf="@+id/txtVNomBano" />
 
     <TextView
-        android:id="@+id/txtVotalCaja"
+        android:id="@+id/txtVTotal"
         android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="28dp"
+        android:text="Total Caja "
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listVDetalle" />
+
+    <TextView
+        android:id="@+id/txtVBano"
+        android:layout_width="90dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="36dp"
+        android:text="Baño"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVNomBano"
+        android:layout_width="240dp"
         android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/border_edit_text"
         android:ems="10"
         android:imeOptions="actionNone"
         android:inputType="text"
         android:maxLines="1"
-        android:text="0"
-        android:textAlignment="viewEnd"
+        android:textAlignment="viewStart"
         android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/txtVTotal"
-        app:layout_constraintTop_toBottomOf="@+id/listVDetalle" />
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/txtVBano"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

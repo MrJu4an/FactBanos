@@ -17,253 +17,19 @@
             android:id="@+id/btnGrabar"
             android:layout_width="228dp"
             android:layout_height="53dp"
-            android:layout_marginStart="400dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btnverde"
             android:text="Grabar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edTNombres" />
 
         <EditText
-            android:id="@+id/edTCedula"
-            android:layout_width="121dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="344dp"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/border_edit_text"
-            android:ems="10"
-            android:enabled="true"
-            android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
-            android:nextFocusUp="@id/edTNombres"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtVTiquete" />
-
-        <TextView
-            android:id="@+id/txtlblCaja"
-            android:layout_width="50dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="348dp"
-            android:layout_marginTop="60dp"
-            android:text="Caja"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtVCant"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/TextView_height"
-            android:layout_marginStart="348dp"
-            android:layout_marginTop="4dp"
-            android:text="Cantidad Usos"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnConcept" />
-
-        <TextView
-            android:id="@+id/txtVUsuario"
-            android:layout_width="60dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/border_edit_text"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtlblCaja" />
-
-        <TextView
-            android:id="@+id/txtVIva"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/border_edit_text"
-            android:text="0"
-            android:textAlignment="textEnd"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@+id/txtVlblIva"
-            app:layout_constraintTop_toBottomOf="@+id/txtVValor" />
-
-        <TextView
-            android:id="@+id/txtVFecha"
-            android:layout_width="200dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="332dp"
-            android:layout_marginTop="32dp"
-            android:text="Fecha : Dic 21/2020"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtVlblIva"
-            android:layout_width="100dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="348dp"
-            android:layout_marginTop="20dp"
-            android:text="Iva"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtVlblValor" />
-
-        <TextView
-            android:id="@+id/txtVTiquete"
-            android:layout_width="80dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="344dp"
-            android:layout_marginTop="16dp"
-            android:text="Cedula"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chkBoxImprimir" />
-
-        <EditText
-            android:id="@+id/edTNombres"
-            android:layout_width="216dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/border_edit_text"
-            android:ems="10"
-            android:enabled="true"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:nextFocusForward="@id/edTPriApe"
-            android:selectAllOnFocus="false"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/edTCedula"
-            app:layout_constraintTop_toBottomOf="@+id/txtVNombres" />
-
-        <TextView
-            android:id="@+id/txtVValor"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/border_edit_text"
-            android:text="0"
-            android:textAlignment="textEnd"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@+id/txtVlblValor"
-            app:layout_constraintTop_toBottomOf="@+id/edTCant" />
-
-        <TextView
-            android:id="@+id/txtVuser"
-            android:layout_width="268dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/border_edit_text"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@+id/txtVUsuario"
-            app:layout_constraintTop_toBottomOf="@+id/txtVlbluser" />
-
-        <TextView
-            android:id="@+id/txtVlblValor"
-            android:layout_width="100dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="348dp"
-            android:layout_marginTop="12dp"
-            android:text="Valor"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtVCant" />
-
-        <Spinner
-            android:id="@+id/spnConcept"
-            android:layout_width="344dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtVlblConcepto" />
-
-        <TextView
-            android:id="@+id/txtVlblTotal"
-            android:layout_width="100dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="348dp"
-            android:layout_marginTop="24dp"
-            android:text="Total"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtVlblIva" />
-
-        <TextView
-            android:id="@+id/txtVlbluser"
-            android:layout_width="85dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="12dp"
-            android:text="Usuario : "
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@+id/txtlblCaja"
-            app:layout_constraintTop_toBottomOf="@+id/txtVFecha" />
-
-        <TextView
-            android:id="@+id/txtVNombres"
-            android:layout_width="100dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:text="Nombres"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@+id/txtVTiquete"
-            app:layout_constraintTop_toBottomOf="@+id/chkBoxImprimir" />
-
-        <TextView
-            android:id="@+id/txtVlblConcepto"
-            android:layout_width="100dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="4dp"
-            android:text="Concepto"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtVUsuario" />
-
-        <TextView
-            android:id="@+id/txtVTotal"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/border_edit_text"
-            android:text="0"
-            android:textAlignment="textEnd"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@+id/txtVlblTotal"
-            app:layout_constraintTop_toBottomOf="@+id/txtVIva" />
-
-        <EditText
             android:id="@+id/edTCant"
             android:layout_width="50dp"
             android:layout_height="40dp"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/border_edit_esp"
             android:ems="10"
             android:imeOptions="actionDone"
@@ -280,12 +46,246 @@
             android:id="@+id/chkBoxImprimir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
             android:text="Imprimir Tiquete"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtVlblTotal" />
+
+        <TextView
+            android:id="@+id/txtVlblTotal"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            android:text="Total"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVlblIva" />
+
+        <TextView
+            android:id="@+id/txtVTiquete"
+            android:layout_width="80dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:text="Cedula"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chkBoxImprimir" />
+
+        <TextView
+            android:id="@+id/txtVlblIva"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="Iva"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVlblValor" />
+
+        <TextView
+            android:id="@+id/txtVlblValor"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:text="Valor"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVCant" />
+
+        <TextView
+            android:id="@+id/txtVlbluser"
+            android:layout_width="85dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="8dp"
+            android:text="Usuario : "
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/txtlblCaja"
+            app:layout_constraintTop_toBottomOf="@+id/txtVFecha" />
+
+        <TextView
+            android:id="@+id/txtVFecha"
+            android:layout_width="200dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="Fecha : Dic 21/2020"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edTNombres"
+            android:layout_width="216dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/border_edit_text"
+            android:ems="10"
+            android:enabled="true"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:nextFocusForward="@id/edTPriApe"
+            android:selectAllOnFocus="false"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/edTCedula"
+            app:layout_constraintTop_toBottomOf="@+id/txtVNombres" />
+
+        <TextView
+            android:id="@+id/txtVNombres"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Nombres"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/txtVTiquete"
+            app:layout_constraintTop_toBottomOf="@+id/chkBoxImprimir" />
+
+        <TextView
+            android:id="@+id/txtVIva"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/border_edit_text"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/txtVlblIva"
+            app:layout_constraintTop_toBottomOf="@+id/txtVValor" />
+
+        <Spinner
+            android:id="@+id/spnConcept"
+            android:layout_width="344dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVlblConcepto" />
+
+        <TextView
+            android:id="@+id/txtVlblConcepto"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="Concepto"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVUsuario" />
+
+        <TextView
+            android:id="@+id/txtVuser"
+            android:layout_width="268dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edit_text"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/txtVUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/txtVlbluser" />
+
+        <TextView
+            android:id="@+id/txtVTotal"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/border_edit_text"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/txtVlblTotal"
+            app:layout_constraintTop_toBottomOf="@+id/txtVIva" />
+
+        <TextView
+            android:id="@+id/txtVValor"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/border_edit_text"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/txtVlblValor"
+            app:layout_constraintTop_toBottomOf="@+id/edTCant" />
+
+        <TextView
+            android:id="@+id/txtlblCaja"
+            android:layout_width="50dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="36dp"
+            android:text="Caja"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtVCant"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/TextView_height"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="Cantidad Usos"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spnConcept" />
+
+        <TextView
+            android:id="@+id/txtVUsuario"
+            android:layout_width="60dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edit_text"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtlblCaja" />
+
+        <EditText
+            android:id="@+id/edTCedula"
+            android:layout_width="121dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/border_edit_text"
+            android:ems="10"
+            android:enabled="true"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:nextFocusUp="@id/edTNombres"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVTiquete" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

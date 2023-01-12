@@ -69,6 +69,12 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:layout_weight="3" />
+
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardCuadreCaj"
                     android:layout_width="160dp"
@@ -154,6 +160,12 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardCerrarCaja"
@@ -242,6 +254,12 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardAnuDevTiq"

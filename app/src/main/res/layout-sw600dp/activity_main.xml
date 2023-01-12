@@ -17,36 +17,67 @@
         android:background="@drawable/logoctec"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="429dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="4dp"
-        android:padding="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.944"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.836" />
 
     <EditText
-        android:id="@+id/edTUsuario"
+        android:id="@+id/edTPassWord"
         android:layout_width="210dp"
         android:layout_height="44dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/dialog_background"
         android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtVPassword2"
+        app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="429dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="48dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAcceso"
+        android:layout_width="232dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/btnazul"
+        android:text="Iniciar Sesion"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTPassWord" />
+
+    <EditText
+        android:id="@+id/edTUsuario"
+        android:layout_width="210dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/dialog_background"
+        android:ems="10"
         android:inputType="textPersonName"
         android:textColor="@android:color/background_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtVUsuario"
         app:layout_constraintTop_toBottomOf="@+id/txtVlbluser" />
@@ -56,7 +87,7 @@
         android:layout_width="315dp"
         android:layout_height="0dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="48dp"
         android:text="CAJA"
         android:textAlignment="center"
@@ -64,32 +95,30 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
-        android:id="@+id/btnAcceso"
-        android:layout_width="232dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="124dp"
-        android:background="@drawable/btnazul"
-        android:text="Iniciar Sesion"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <TextView
+        android:id="@+id/txtVUsuario"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="88dp"
+        android:text="Usuario"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTPassWord" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="322dp"
         android:layout_height="32dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="360dp"
+        android:layout_marginTop="64dp"
         android:max="100"
         android:progressTint="#59FF00"
         android:scrollbarSize="10dp"
@@ -97,28 +126,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTPassWord" />
 
-    <EditText
-        android:id="@+id/edTPassWord"
-        android:layout_width="210dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/dialog_background"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:textColor="@android:color/background_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVPassword2"
-        app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
-
     <TextView
         android:id="@+id/txtVPassword2"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="36dp"
         android:text="Contraseña"
         android:textColor="@color/button_text_color"
         android:textSize="18sp"
@@ -127,24 +140,11 @@
         app:layout_constraintTop_toBottomOf="@+id/edTUsuario" />
 
     <TextView
-        android:id="@+id/txtVUsuario"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="80dp"
-        android:text="Usuario"
-        android:textColor="@color/button_text_color"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
         android:id="@+id/txtVFecha"
         android:layout_width="315dp"
         android:layout_height="0dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="364dp"
+        android:layout_marginTop="64dp"
         android:text="Fecha"
         android:textColor="@color/button_text_color"
         android:textSize="18sp"

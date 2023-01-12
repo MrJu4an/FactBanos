@@ -420,8 +420,9 @@ public class FacBanosActivity extends AppCompatActivity {
             double subtotal = Global.g_ValorConcep / 1.19;
             double vSub = subtotal * Integer.parseInt(edTCant.getText().toString());
             int valSubtotal = (int) Math.round(vSub) ;
-
-            double vIva = valSubtotal *0.19;
+            //double vIva = valSubtotal *0.19;
+            int ivaPrueba = Global.g_ValorIva;
+            double vIva = (Global.g_ValorConcep * Integer.parseInt(edTCant.getText().toString())) - valSubtotal;
             int Iva = (int) Math.round(vIva);
 
             int vTotal = (valSubtotal + Iva);
