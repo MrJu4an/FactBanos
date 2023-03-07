@@ -500,25 +500,26 @@ public class FacBanosActivity extends AppCompatActivity {
                         concepto = "USO BANO";
 
                     //Impresion Factura
-                    escPos.writeLF(title, Global.g_NomEmp)
+                    //escPos.writeLF(title, Global.g_NomEmp)
+                    escPos.writeLF(subtitle, Global.g_NomEmp)
                             .writeLF(center, "Nit." + Global.g_Nit)
                             .writeLF(center, "----------------------------------")
                             .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                             .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                     +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
                             .writeLF(subtitle, "REGIMEN COMUN")
-                            .feed(2)
+                            .feed(1)
                             .writeLF(fecha)
                             .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                             .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
-                            .write(bold, "Caja: " + Global.g_Caja)
-                            .writeLF(" Codigo Usuario: " + Global.g_Usuario)
-                            .writeLF("Usuario: " + Global.g_User.getUsuario())
-                            .feed(2)
-                            .writeLF(subtitle, "CLIENTE")
+                            //.write(bold, "Caja: " + Global.g_Caja)
+                            //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
+                            //.writeLF("Usuario: " + Global.g_User.getUsuario())
                             .feed(1)
-                            .writeLF("Cedula: " + edTCedula.getText().toString())
-                            .writeLF("Nombre: " + edTNombres.getText().toString())
+                            //.writeLF(subtitle, "CLIENTE")
+                            //.feed(1)
+                            .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
+                            .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
                             .feed(1)
                             .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
                             .writeLF(center,"----------------------------------------------")
@@ -526,16 +527,16 @@ public class FacBanosActivity extends AppCompatActivity {
                             .write(String.format(" %11s", edTCant.getText()))
                             .write(String.format(" %11s", NumberFormat.getInstance().format(Global.g_ValorConcep)))
                             .writeLF(String.format(" %9s", txtVTotal.getText()))
-                            .feed(2)
+                            .feed(1)
                             .writeLF(String.format("SUBTOTAL       %28s", txtVValor.getText()))
                             .writeLF(String.format("IVA            %28s", txtVIva.getText()))
                             .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
-                            .feed(1)
+                            //.feed(1)
                             .writeLF(center,"----------------------------------------------")
-                            .writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
-                            .feed(3)
+                            //.writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                            .feed(2)
                             .cut(EscPos.CutMode.FULL);
-                    escPos.feed(1);
+                    //escPos.feed(1);
                     banImp =1;
                 } catch (IOException e){
                     e.printStackTrace();
