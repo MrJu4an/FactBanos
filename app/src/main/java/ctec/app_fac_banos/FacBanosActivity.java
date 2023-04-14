@@ -353,6 +353,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 sweetAlertDialog.dismiss();
                                 if (result[0].equals("OK")){
                                     Global.g_Resolucion.setFRNUMFAC(Double.parseDouble(result[1].toString()));
+                                    Global.g_NumFacFin = Double.parseDouble(result[1].toString());
                                     if (chkBoxImprimir.isChecked())
                                         //imprimirFac();
                                         imprimirFacKR5(host, port);
@@ -500,43 +501,95 @@ public class FacBanosActivity extends AppCompatActivity {
                         concepto = "USO BANO";
 
                     //Impresion Factura
-                    //escPos.writeLF(title, Global.g_NomEmp)
-                    escPos.writeLF(subtitle, Global.g_NomEmp)
-                            .writeLF(center, "Nit." + Global.g_Nit)
-                            .writeLF(center, "----------------------------------")
-                            .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
-                            .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
-                                    +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
-                            .writeLF(subtitle, "REGIMEN COMUN")
-                            .feed(1)
-                            .writeLF(fecha)
-                            .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
-                            .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
-                            //.write(bold, "Caja: " + Global.g_Caja)
-                            //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
-                            //.writeLF("Usuario: " + Global.g_User.getUsuario())
-                            .feed(1)
-                            //.writeLF(subtitle, "CLIENTE")
-                            //.feed(1)
-                            .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
-                            .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
-                            .feed(1)
-                            .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
-                            .writeLF(center,"----------------------------------------------")
-                            .write(String.format(" %-1s", concepto))
-                            .write(String.format(" %11s", edTCant.getText()))
-                            .write(String.format(" %11s", NumberFormat.getInstance().format(Global.g_ValorConcep)))
-                            .writeLF(String.format(" %9s", txtVTotal.getText()))
-                            .feed(1)
-                            .writeLF(String.format("SUBTOTAL       %28s", txtVValor.getText()))
-                            .writeLF(String.format("IVA            %28s", txtVIva.getText()))
-                            .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
-                            //.feed(1)
-                            .writeLF(center,"----------------------------------------------")
-                            //.writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
-                            .feed(2)
-                            .cut(EscPos.CutMode.FULL);
-                    //escPos.feed(1);
+                    if (Global.g_NomEmp.toUpperCase().contains("PEREIRA")){
+                        //escPos.writeLF(title, Global.g_NomEmp)
+                        escPos.writeLF(subtitle, Global.g_NomEmp)
+                                .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, "----------------------------------")
+                                .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
+                                .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
+                                .writeLF(subtitle, "REGIMEN COMUN")
+                                .feed(1)
+                                .writeLF(fecha)
+                                .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
+                                //.write(bold, "Caja: " + Global.g_Caja)
+                                //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
+                                //.writeLF("Usuario: " + Global.g_User.getUsuario())
+                                .feed(1)
+                                //.writeLF(subtitle, "CLIENTE")
+                                //.feed(1)
+                                .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
+                                .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
+                                .feed(1)
+                                .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
+                                .writeLF(center,"----------------------------------------------")
+                                .write(String.format(" %-1s", concepto))
+                                .write(String.format(" %11s", edTCant.getText()))
+                                .write(String.format(" %11s", NumberFormat.getInstance().format(Global.g_ValorConcep)))
+                                .writeLF(String.format(" %9s", txtVTotal.getText()))
+                                .feed(1)
+                                .writeLF(String.format("SUBTOTAL       %28s", txtVValor.getText()))
+                                .writeLF(String.format("IVA            %28s", txtVIva.getText()))
+                                .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
+                                //.feed(1)
+                                .writeLF(center,"----------------------------------------------")
+                                //.writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                                .feed(2)
+                                .cut(EscPos.CutMode.FULL);
+                        //escPos.feed(1);
+
+                    } else{
+
+                        String ubicacion = "";
+                        if (Global.g_Caja == "B1"){
+                            ubicacion = "BANO 1";
+                        } else if (Global.g_Caja == "B2"){
+                            ubicacion = "BANO 2";
+                        } else{
+                            ubicacion = "BANO 3";
+                        }
+                        //escPos.writeLF(title, Global.g_NomEmp)
+                        escPos.writeLF(subtitle, Global.g_NomEmp)
+                                .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, "----------------------------------")
+                                .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
+                                .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
+                                .writeLF(resolucion, "Fecha resol. " + Global.g_Resolucion.getFRFECEMI())
+                                .writeLF(subtitle, "REGIMEN COMUN")
+                                .feed(1)
+                                .writeLF(fecha)
+                                .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                .writeLF("Ubicacion: " + ubicacion )
+                                .write(bold, "Maquina: " + Global.g_Caja)
+                                .writeLF(" Serial: " + Global.g_Serial)
+                                //.writeLF("Usuario: " + Global.g_User.getUsuario())
+                                .feed(1)
+                                //.writeLF(subtitle, "CLIENTE")
+                                //.feed(1)
+                                .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
+                                .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
+                                .feed(1)
+                                .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
+                                .writeLF(center,"----------------------------------------------")
+                                .write(String.format(" %-1s", concepto))
+                                .write(String.format(" %11s", edTCant.getText()))
+                                .write(String.format(" %11s", NumberFormat.getInstance().format(Global.g_ValorConcep)))
+                                .writeLF(String.format(" %9s", txtVTotal.getText()))
+                                .feed(1)
+                                .writeLF(String.format("SUBTOTAL       %28s", txtVValor.getText()))
+                                .writeLF(String.format("IVA            %28s", txtVIva.getText()))
+                                .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
+                                //.feed(1)
+                                .writeLF(center,"----------------------------------------------")
+                                //.writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                                .feed(2)
+                                .cut(EscPos.CutMode.FULL);
+                        //escPos.feed(1);
+                    }
+
                     banImp =1;
                 } catch (IOException e){
                     e.printStackTrace();

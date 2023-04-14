@@ -18,7 +18,7 @@
             android:layout_width="228dp"
             android:layout_height="53dp"
             android:layout_marginStart="88dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/btnverde"
             android:text="Grabar"
             app:layout_constraintStart_toStartOf="parent"

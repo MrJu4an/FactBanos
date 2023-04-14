@@ -13,23 +13,12 @@
         android:layout_height="match_parent">
 
 
-        <Button
-            android:id="@+id/btnGrabar"
-            android:layout_width="228dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="400dp"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/btnverde"
-            android:text="Grabar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTNombres" />
-
         <EditText
             android:id="@+id/edTCedula"
             android:layout_width="121dp"
             android:layout_height="40dp"
             android:layout_marginStart="344dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/border_edit_text"
             android:ems="10"
             android:enabled="true"
@@ -40,6 +29,35 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtVTiquete" />
+
+        <EditText
+            android:id="@+id/edTNombres"
+            android:layout_width="216dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edit_text"
+            android:ems="10"
+            android:enabled="true"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:nextFocusForward="@id/edTPriApe"
+            android:selectAllOnFocus="false"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/edTCedula"
+            app:layout_constraintTop_toBottomOf="@+id/txtVNombres" />
+
+        <Button
+            android:id="@+id/btnGrabar"
+            android:layout_width="228dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="400dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btnverde"
+            android:text="Grabar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edTNombres" />
 
         <TextView
             android:id="@+id/txtlblCaja"
@@ -127,24 +145,6 @@
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chkBoxImprimir" />
-
-        <EditText
-            android:id="@+id/edTNombres"
-            android:layout_width="216dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/border_edit_text"
-            android:ems="10"
-            android:enabled="true"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:nextFocusForward="@id/edTPriApe"
-            android:selectAllOnFocus="false"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/edTCedula"
-            app:layout_constraintTop_toBottomOf="@+id/txtVNombres" />
 
         <TextView
             android:id="@+id/txtVValor"

@@ -78,8 +78,10 @@ public class DescargaDatos extends AppCompatActivity {
                         Resolucion resolucion = new Gson().fromJson(response, Resolucion.class);
 
                         Global.g_Resolucion=resolucion;
-                        if (Global.g_Resolucion.getFRNUMINI() !=0)
+                        if (Global.g_Resolucion.getFRNUMINI() !=0) {
+                            Global.g_NumFacIni = Global.g_Resolucion.getFRNUMFAC();
                             DescargaDescripCaja(Caja);
+                        }
                         else{
                             mensaje.MensajeAdvertencia(context, "3.Advertencia" ,
                                     "No se descargo la resolucion \n Contacte al Administrador!!!");

@@ -406,49 +406,113 @@ public class CierreCajaActivity extends AppCompatActivity {
                     fecha = String.format("%s",dateFormat.getDateInstance().format(date) + " " + fecha);
 
                     //Impresion Cierre
-                    escPos.writeLF(title, Global.g_NomEmp)
-                            .writeLF(center, "Nit." + Global.g_Nit)
-                            .writeLF(center, "----------------------------------")
-                            .feed(1)
-                            .writeLF(fecha)
-                            .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
-                            .write(bold, "Caja: " + Global.g_Caja)
-                            .writeLF(" Codigo Usuario: " + Global.g_Usuario)
-                            .writeLF("Usuario: " + Global.g_User.getUsuario())
-                            .feed(2)
-                            .writeLF("  CONCEPTO    |USOS|   IMP |   FACTs |   Total")
-                            .writeLF(center,"----------------------------------------------");
-                            //Imprimimos la grilla
-                            int cont,total=0;
-                            if (factBanos != null){
-                                for (cont=0;cont < factBanos.length;cont++){
-                                    String concepto = "";
-                                    concepto = factBanos[cont].getRBCONCEPTO();
-                                    if (concepto.equals("USO BAÑO"))
-                                        concepto = "USO BANO ";
+                    if (Global.g_NomEmp.toUpperCase().contains("PEREIRA")){
+                        escPos.writeLF(title, Global.g_NomEmp)
+                                .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, "----------------------------------")
+                                .feed(1)
+                                .writeLF(fecha)
+                                .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
+                                .write(bold, "Caja: " + Global.g_Caja)
+                                .writeLF(" Codigo Usuario: " + Global.g_Usuario)
+                                .writeLF("Usuario: " + Global.g_User.getUsuario())
+                                .feed(2)
+                                .writeLF("  CONCEPTO    |USOS|   IMP |   FACTs |   Total")
+                                .writeLF(center,"----------------------------------------------");
+                        //Imprimimos la grilla
+                        int cont,total=0;
+                        if (factBanos != null){
+                            for (cont=0;cont < factBanos.length;cont++){
+                                String concepto = "";
+                                concepto = factBanos[cont].getRBCONCEPTO();
+                                if (concepto.equals("USO BAÑO"))
+                                    concepto = "USO BANO ";
 
-                                    escPos.write(String.format("%7s ", concepto))
-                                            .write(String.format("%8s ", factBanos[cont].getRBCANTUSOS().toString()))
-                                            .write(String.format("%8s ", factBanos[cont].getRBIMPFACT().toString()))
-                                            .write(String.format("%7s ", factBanos[cont].getRBNUMFAC().toString()))
-                                            .writeLF(String.format("%11s ", NumberFormat.getInstance().format(factBanos[cont].getRBTOTFAC()).toString()));
-                                }
+                                escPos.write(String.format("%7s ", concepto))
+                                        .write(String.format("%8s ", factBanos[cont].getRBCANTUSOS().toString()))
+                                        .write(String.format("%8s ", factBanos[cont].getRBIMPFACT().toString()))
+                                        .write(String.format("%7s ", factBanos[cont].getRBNUMFAC().toString()))
+                                        .writeLF(String.format("%11s ", NumberFormat.getInstance().format(factBanos[cont].getRBTOTFAC()).toString()));
                             }
-                    escPos.feed(2)
-                            .writeLF(String.format("TOTAL FACTURAS          %20s", txtVTotalFact.getText().toString()))
-                            .writeLF(String.format("TOTAL USOS              %20s", txtVTotalUsos.getText().toString()))
-                            .writeLF(String.format("TOTAL IMPRESIONES       %20s", txtVTotalImp.getText().toString()))
-                            .writeLF(String.format("SUBTOTAL VENTAS         %20s", NumberFormat.getInstance().format(subTotal)))
-                            .writeLF(String.format("IVA VENTAS              %20s", NumberFormat.getInstance().format(totalIva)))
-                            .writeLF(String.format("TOTAL VENTAS            %20s", NumberFormat.getInstance().format(TotalCaja)))
-                            .feed(4)
-                            .writeLF(center,"----------------------------------------------")
-                            .writeLF("FIRMA TAQUILLERO")
-                            .feed(1)
-                            .writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
-                            .feed(3)
-                            .cut(EscPos.CutMode.FULL);
-                    escPos.feed(1);
+                        }
+                        escPos.feed(2)
+                                .writeLF(String.format("TOTAL FACTURAS          %20s", txtVTotalFact.getText().toString()))
+                                .writeLF(String.format("TOTAL USOS              %20s", txtVTotalUsos.getText().toString()))
+                                .writeLF(String.format("TOTAL IMPRESIONES       %20s", txtVTotalImp.getText().toString()))
+                                .writeLF(String.format("SUBTOTAL VENTAS         %20s", NumberFormat.getInstance().format(subTotal)))
+                                .writeLF(String.format("IVA VENTAS              %20s", NumberFormat.getInstance().format(totalIva)))
+                                .writeLF(String.format("TOTAL VENTAS            %20s", NumberFormat.getInstance().format(TotalCaja)))
+                                .feed(4)
+                                .writeLF(center,"----------------------------------------------")
+                                .writeLF("FIRMA TAQUILLERO")
+                                .feed(1)
+                                .writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                                .feed(3)
+                                .cut(EscPos.CutMode.FULL);
+                        escPos.feed(1);
+                    } else {
+                        String ubicacion = "";
+                        if (Global.g_Caja == "B1"){
+                            ubicacion = "BANO 1";
+                        } else if (Global.g_Caja == "B2"){
+                            ubicacion = "BANO 2";
+                        } else{
+                            ubicacion = "BANO 3";
+                        }
+                        escPos.writeLF(title, Global.g_NomEmp)
+                                .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, "----------------------------------")
+                                .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
+                                .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
+                                .writeLF(resolucion, "Fecha resol. " + Global.g_Resolucion.getFRFECEMI())
+                                .writeLF(subtitle, "REGIMEN COMUN")
+                                .feed(1)
+                                .writeLF(fecha)
+                                .writeLF("Ubicacion: " + ubicacion )
+                                .write(bold, "Caja: " + Global.g_Caja)
+                                //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
+                                .writeLF(" Usuario: " + Global.g_User.getUsuario())
+                                .write("Maquina: " + Global.g_Caja)
+                                .writeLF(" Serial: " + Global.g_Serial)
+                                .feed(2)
+                                .writeLF("  CONCEPTO    |USOS|   IMP |   FACTs |   Total")
+                                .writeLF(center,"----------------------------------------------");
+                        //Imprimimos la grilla
+                        int cont,total=0;
+                        if (factBanos != null){
+                            for (cont=0;cont < factBanos.length;cont++){
+                                String concepto = "";
+                                concepto = factBanos[cont].getRBCONCEPTO();
+                                if (concepto.equals("USO BAÑO"))
+                                    concepto = "USO BANO ";
+
+                                escPos.write(String.format("%7s ", concepto))
+                                        .write(String.format("%8s ", factBanos[cont].getRBCANTUSOS().toString()))
+                                        .write(String.format("%8s ", factBanos[cont].getRBIMPFACT().toString()))
+                                        .write(String.format("%7s ", factBanos[cont].getRBNUMFAC().toString()))
+                                        .writeLF(String.format("%11s ", NumberFormat.getInstance().format(factBanos[cont].getRBTOTFAC()).toString()));
+                            }
+                        }
+                        escPos.feed(2)
+                                .writeLF(String.format("TOTAL FACTURAS          %20s", txtVTotalFact.getText().toString()))
+                                .writeLF(String.format("TOTAL USOS              %20s", txtVTotalUsos.getText().toString()))
+                                .writeLF(String.format("TOTAL IMPRESIONES       %20s", txtVTotalImp.getText().toString()))
+                                .writeLF(String.format("SUBTOTAL VENTAS         %20s", NumberFormat.getInstance().format(subTotal)))
+                                .writeLF(String.format("IVA VENTAS              %20s", NumberFormat.getInstance().format(totalIva)))
+                                .writeLF(String.format("TOTAL VENTAS            %20s", NumberFormat.getInstance().format(TotalCaja)))
+                                .writeLF(String.format("No. FACT. INICIAL       %20s", NumberFormat.getInstance().format(Global.g_NumFacIni)))
+                                .writeLF(String.format("No. FACT. FINAL         %20s", NumberFormat.getInstance().format(Global.g_NumFacFin)))
+                                .feed(4)
+                                .writeLF(center,"----------------------------------------------")
+                                .writeLF("FIRMA TAQUILLERO")
+                                .feed(1)
+                                .writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                                .feed(3)
+                                .cut(EscPos.CutMode.FULL);
+                        escPos.feed(1);
+                    }
+
                 } catch (IOException e){
                     e.printStackTrace();
                 }
