@@ -388,7 +388,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                     //Declaramos variables
                     String fecha="";
                     int hora;
-                    dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
+                    dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a", Locale.getDefault());
                     date = new Date();
                     fecha = dateFormat.getTimeInstance().format(date);
                     String[] parts = fecha.split(":");
@@ -451,16 +451,10 @@ public class CierreCajaActivity extends AppCompatActivity {
                                 .cut(EscPos.CutMode.FULL);
                         escPos.feed(1);
                     } else {
-                        String ubicacion = "";
-                        if (Global.g_Caja == "B1"){
-                            ubicacion = "BANO 1";
-                        } else if (Global.g_Caja == "B2"){
-                            ubicacion = "BANO 2";
-                        } else{
-                            ubicacion = "BANO 3";
-                        }
+                        String ubicacion = "BANO " + Global.g_Caja.trim().charAt(1);
                         escPos.writeLF(title, Global.g_NomEmp)
                                 .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, Global.g_DirEmp)
                                 .writeLF(center, "----------------------------------")
                                 .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())

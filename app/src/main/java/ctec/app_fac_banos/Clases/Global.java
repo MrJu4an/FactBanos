@@ -23,6 +23,7 @@ public class Global {
     public static String g_FechaApr;
     public static Resolucion g_Resolucion;
     public static String g_NomEmp;
+    public static String g_DirEmp;
     public static String g_Nit;
     public static int g_ValorConcep;
     public static int g_ValorIva;

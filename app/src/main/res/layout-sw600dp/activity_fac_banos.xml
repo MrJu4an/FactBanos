@@ -61,9 +61,9 @@
 
         <TextView
             android:id="@+id/txtlblCaja"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="29dp"
-            android:layout_marginStart="348dp"
+            android:layout_marginStart="340dp"
             android:layout_marginTop="60dp"
             android:text="Caja"
             android:textColor="@android:color/black"
@@ -88,7 +88,7 @@
             android:layout_width="60dp"
             android:layout_height="42dp"
             android:layout_marginStart="340dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/border_edit_text"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -112,10 +112,10 @@
 
         <TextView
             android:id="@+id/txtVFecha"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="29dp"
-            android:layout_marginStart="332dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="340dp"
+            android:layout_marginTop="16dp"
             android:text="Fecha : Dic 21/2020"
             android:textColor="@android:color/black"
             android:textSize="22sp"
@@ -210,19 +210,21 @@
 
         <TextView
             android:id="@+id/txtVlbluser"
-            android:layout_width="85dp"
+            android:layout_width="100dp"
             android:layout_height="29dp"
             android:layout_marginStart="84dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="60dp"
             android:text="Usuario : "
             android:textColor="@android:color/black"
             android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/txtlblCaja"
-            app:layout_constraintTop_toBottomOf="@+id/txtVFecha" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtVNombres"
-            android:layout_width="100dp"
+            android:layout_width="125dp"
             android:layout_height="29dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
@@ -234,7 +236,7 @@
 
         <TextView
             android:id="@+id/txtVlblConcepto"
-            android:layout_width="100dp"
+            android:layout_width="125dp"
             android:layout_height="29dp"
             android:layout_marginStart="340dp"
             android:layout_marginTop="4dp"

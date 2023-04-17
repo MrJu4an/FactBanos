@@ -240,7 +240,6 @@ public class FacBanosActivity extends AppCompatActivity {
         date = new Date();
 
         txtVFecha.setText("Fecha:" + dateFormat.getDateInstance().format(date));
-
     }
 
     private Date convertDate(String date,String Format){
@@ -261,8 +260,7 @@ public class FacBanosActivity extends AppCompatActivity {
     private void grabarFactura(){
         try{
             String imp = "",cedula ="",nombre="";
-
-            if (edTCant.getText().equals("")){
+            if (edTCant.getText().toString().equals("")){
                 mensaje.MensajeAdvertencia(FacBanosActivity.this,"ADVERTENCIA","Debe ingresar la cantidad de Usos!!!");
                 return;
             }
@@ -354,13 +352,15 @@ public class FacBanosActivity extends AppCompatActivity {
                                 if (result[0].equals("OK")){
                                     Global.g_Resolucion.setFRNUMFAC(Double.parseDouble(result[1].toString()));
                                     Global.g_NumFacFin = Double.parseDouble(result[1].toString());
-                                    if (chkBoxImprimir.isChecked())
+                                    if (chkBoxImprimir.isChecked()) {
                                         //imprimirFac();
                                         imprimirFacKR5(host, port);
-                                    else
+                                    }
+                                    else {
                                         limpiar();
-
+                                    }
                                      mensaje.MensajeExitoso(FacBanosActivity.this, "Exitoso" , "factura grabada Exitosamente!!!");
+                                    limpiar();
                                 }
                                 else {
                                     mensaje.MensajeAdvertencia(FacBanosActivity.this, "Advertencia" ,
@@ -474,7 +474,7 @@ public class FacBanosActivity extends AppCompatActivity {
                     //Declaramos variables
                     String fecha="";
                     int hora;
-                    dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
+                    dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a", Locale.getDefault());
                     fecha = dateFormat.getTimeInstance().format(date);
                     String[] parts = fecha.split(":");
                     if (parts[0].length()==1)
@@ -542,17 +542,11 @@ public class FacBanosActivity extends AppCompatActivity {
 
                     } else{
 
-                        String ubicacion = "";
-                        if (Global.g_Caja == "B1"){
-                            ubicacion = "BANO 1";
-                        } else if (Global.g_Caja == "B2"){
-                            ubicacion = "BANO 2";
-                        } else{
-                            ubicacion = "BANO 3";
-                        }
+                        String ubicacion = "BANO " + Global.g_Caja.trim().charAt(1);
                         //escPos.writeLF(title, Global.g_NomEmp)
                         escPos.writeLF(subtitle, Global.g_NomEmp)
                                 .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, Global.g_DirEmp)
                                 .writeLF(center, "----------------------------------")
                                 .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
@@ -938,7 +932,7 @@ public class FacBanosActivity extends AppCompatActivity {
     private void limpiar (){
 
         edTCant.setText("");
-        txtVValor.setText( "0");
+        txtVValor.setText("0");
         txtVIva.setText( "0" );
         txtVTotal.setText("0");
         chkBoxImprimir.setChecked(true);

@@ -205,6 +205,9 @@ public class DescargaDatos extends AppCompatActivity {
                         Global.g_NomUbica = detalle[0].getDescripcion();
                         DescargaParametro("NIT");
                         DescargaParametro("NOMEMPRESA");
+                        if (Global.g_NomEmp.toUpperCase().contains("BUGA")){
+                            DescargaParametro("DIREMP");
+                        }
                         DescargaConcepBanos(Caja);
 
 
@@ -300,6 +303,8 @@ public class DescargaDatos extends AppCompatActivity {
                             Global.g_Nit = detalle;
                         else if (item.equals("NOMEMPRESA"))
                             Global.g_NomEmp = detalle;
+                        else if (item.equals("DIREMP"))
+                            Global.g_DirEmp = detalle;
 
                     } catch (Exception e) {
                         sweetAlertDialog.dismiss();
@@ -497,6 +502,11 @@ public class DescargaDatos extends AppCompatActivity {
             if ( Global.detalles == null) {
                 bandescarga = 0;
             }
+            //if (Global.g_NomEmp.toUpperCase().contains("BUGA")){
+            //    if (Global.g_DirEmp.equals("") || Global.g_DirEmp.equals("-1")){
+            //        bandescarga = 0;
+            //    }
+            //}
 
             /*if ( Global.g_ValorConcep.equals("") || Global.g_ValorConcep.toString().equals("-1")) {
                 bandescarga = 0;
