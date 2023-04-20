@@ -386,24 +386,30 @@ public class CierreCajaActivity extends AppCompatActivity {
                             .setJustification(EscPosConst.Justification.Center);
 
                     //Declaramos variables
-                    String fecha="";
-                    int hora;
-                    dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a", Locale.getDefault());
+                    //String fecha="";
+                    //int hora;
+                    //dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a", Locale.getDefault());
                     date = new Date();
-                    fecha = dateFormat.getTimeInstance().format(date);
-                    String[] parts = fecha.split(":");
-                    if (parts[0].length()==1)
-                        fecha = "0"+fecha;
-                    hora = Integer.parseInt(fecha.substring(0, 2));
+                    //fecha = dateFormat.getTimeInstance().format(date);
+                    //String[] parts = fecha.split(":");
+                    //if (parts[0].length()==1)
+                    //    fecha = "0"+fecha;
+                    //hora = Integer.parseInt(fecha.substring(0, 2));
 
-                    if(hora>12)
-                        fecha =  "" + String.format("%2s",(hora-12)) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
-                    else if(hora==12)
-                        fecha =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
-                    else
-                        fecha =  dateFormat.getTimeInstance().format(date).substring(0, 5) + " am" ;
+                    //if(hora>12)
+                    //    fecha =  "" + String.format("%2s",(hora-12)) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
+                    //else if(hora==12)
+                    //    fecha =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
+                    //else
+                    //    fecha =  dateFormat.getTimeInstance().format(date).substring(0, 5) + " am" ;
 
-                    fecha = String.format("%s",dateFormat.getDateInstance().format(date) + " " + fecha);
+                    //fecha = String.format("%s",dateFormat.getDateInstance().format(date) + " " + fecha);
+                    String fecha="";
+                    String hora="";
+                    dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
+                    hora = dateFormat.getTimeInstance().format(date);
+                    //hora =  dateFormat.getTimeInstance().format(date).substring(0, 5);
+                    fecha = String.format("%s",dateFormat.getDateInstance().format(date) + " " + hora);
 
                     //Impresion Cierre
                     if (Global.g_NomEmp.toUpperCase().contains("PEREIRA")){
