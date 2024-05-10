@@ -1002,5 +1002,6 @@ public class FacBanosActivity extends AppCompatActivity {
         edTCedula.setText("");
         edTNombres.setText("");
         edTEmail.setText("");
+        calcularValores();
     }
 }
