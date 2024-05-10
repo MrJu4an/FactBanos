@@ -111,6 +111,7 @@ public class FacBanosActivity extends AppCompatActivity {
         edTCedula.setText("");
         edTNombres.setText("");
         edTEmail.setText("");
+        edTCant.setText("1");
 
         listaConcept = new ArrayList<String>();
 
@@ -541,6 +542,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 //.writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 //.writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                 //        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
+                                //.writeLF(resolucion, "Septiembre 21 de 2023  -  Vigencia de 12 Meses")
                                 //.writeLF(subtitle, "REGIMEN COMUN")
                                 .feed(1)
                                 .writeLF(fecha)
@@ -702,6 +704,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 //printerDevice.printText(format, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES());
                                 //printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                 //                                    +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
+                                //printerDevice.printText(format, "Septiembre 21 de 2023  -  Vigencia de 12 Meses");
                                 //printerDevice.printText(format,"REGIME COMUN");
 
                                 printerDevice.printText("\n");
@@ -988,7 +991,7 @@ public class FacBanosActivity extends AppCompatActivity {
 
     private void limpiar (){
 
-        edTCant.setText("");
+        edTCant.setText("1");
         txtVValor.setText("0");
         txtVIva.setText( "0" );
         txtVTotal.setText("0");
