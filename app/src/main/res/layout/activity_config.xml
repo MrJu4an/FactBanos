@@ -8,6 +8,33 @@
     tools:context=".ConfigActivity">
 
     <EditText
+        android:id="@+id/edTDispositivo"
+        android:layout_width="350dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="textWebEditText"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodigo4" />
+
+    <TextView
+        android:id="@+id/txtCodigo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Tipo Dispositivo (P) Pantallas - (K) K2"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTPort" />
+
+    <EditText
         android:id="@+id/edTPort"
         android:layout_width="350dp"
         android:layout_height="29dp"
@@ -62,20 +89,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVTitulo" />
 
-    <TextView
-        android:id="@+id/txtAgencia"
-        android:layout_width="190dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="264dp"
-        android:text="Nombre Ubicación :"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
-
     <EditText
         android:id="@+id/edTHost"
         android:layout_width="350dp"
@@ -95,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:text="Puerto de la impresora"
         android:textColor="@android:color/white"
         android:textSize="20sp"
@@ -145,26 +158,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVTitulo" />
 
-    <Button
-        android:id="@+id/btnGrabar"
-        android:layout_width="75dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="124dp"
-        android:background="@drawable/grabar"
-        android:elevation="0dp"
-        android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTNomUbica"
-        app:layout_constraintVertical_bias="1.0" />
-
     <EditText
         android:id="@+id/edTNomUbica"
         android:layout_width="350dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="288dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="Nombre de la Ubicación"
@@ -175,16 +174,44 @@
         app:layout_constraintTop_toBottomOf="@+id/edTCaja" />
 
     <Button
+        android:id="@+id/btnGrabar"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/grabar"
+        android:elevation="0dp"
+        android:gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTNomUbica"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
         android:id="@+id/btnSalir"
         android:layout_width="78dp"
         android:layout_height="66dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/salir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTNomUbica"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txtAgencia"
+        android:layout_width="190dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="292dp"
+        android:text="Nombre Ubicación :"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
 
     <TextView
         android:id="@+id/textView"

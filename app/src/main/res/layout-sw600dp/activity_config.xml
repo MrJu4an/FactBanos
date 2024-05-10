@@ -7,6 +7,33 @@
     android:background="@drawable/fondosec"
     tools:context=".ConfigActivity">
 
+    <EditText
+        android:id="@+id/edTDispositivo"
+        android:layout_width="350dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="352dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="textWebEditText"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodigo5" />
+
+    <TextView
+        android:id="@+id/txtCodigo5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="352dp"
+        android:layout_marginTop="20dp"
+        android:text="Tipo Dispositivo (P) Pantallas - (K) K2"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTPort" />
+
     <TextView
         android:id="@+id/txtVTitulo"
         android:layout_width="wrap_content"
@@ -93,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="352dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:text="Puerto de la impresora"
         android:textColor="@android:color/white"
         android:textSize="20sp"
@@ -135,7 +162,7 @@
         android:layout_width="78dp"
         android:layout_height="66dp"
         android:layout_marginEnd="344dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="110dp"
         android:background="@drawable/salir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -144,8 +171,8 @@
         android:id="@+id/txtAgencia"
         android:layout_width="190dp"
         android:layout_height="27dp"
-        android:layout_marginStart="352dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginStart="336dp"
+        android:layout_marginTop="320dp"
         android:text="Nombre Ubicación :"
         android:textColor="@android:color/white"
         android:textSize="20sp"
@@ -154,24 +181,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
 
-    <Button
-        android:id="@+id/btnGrabar"
-        android:layout_width="75dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="380dp"
-        android:layout_marginBottom="140dp"
-        android:background="@drawable/grabar"
-        android:elevation="0dp"
-        android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/edTNomUbica"
         android:layout_width="350dp"
         android:layout_height="35dp"
-        android:layout_marginStart="352dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginStart="336dp"
+        android:layout_marginTop="316dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="Nombre de la Ubicación"
@@ -180,6 +195,18 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTCaja" />
+
+    <Button
+        android:id="@+id/btnGrabar"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="380dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/grabar"
+        android:elevation="0dp"
+        android:gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"

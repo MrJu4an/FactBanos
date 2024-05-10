@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.printservice.PrintService;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -60,7 +61,7 @@ import ctec.app_fac_banos.Clases.Mensaje;
 
 public class FacBanosActivity extends AppCompatActivity {
 
-    EditText edTCant,edTCedula,edTNombres;
+    EditText edTCant,edTCedula,edTNombres,edTEmail;
     TextView txtVCaja,txtVuser,txtVValor,txtVIva,txtVTotal,txtVFecha;
     Button btnGrabar;
     CheckBox chkBoxImprimir;
@@ -88,6 +89,7 @@ public class FacBanosActivity extends AppCompatActivity {
         mensaje = new Mensaje();
         edTCedula = findViewById(R.id.edTCedula);
         edTNombres = findViewById(R.id.edTNombres);
+        edTEmail = findViewById(R.id.edTEmail);
         edTCant = findViewById(R.id.edTCant);
         txtVCaja = findViewById(R.id.txtVUsuario);
         txtVuser = findViewById(R.id.txtVuser);
@@ -106,8 +108,9 @@ public class FacBanosActivity extends AppCompatActivity {
         chkBoxImprimir.setEnabled(false);
         edTCedula.setEnabled(true);
         edTNombres.setEnabled(true);
-        edTCedula.setText("1");
-        edTNombres.setText("N/A");
+        edTCedula.setText("");
+        edTNombres.setText("");
+        edTEmail.setText("");
 
         listaConcept = new ArrayList<String>();
 
@@ -260,7 +263,7 @@ public class FacBanosActivity extends AppCompatActivity {
 
     private void grabarFactura(){
         try{
-            String imp = "",cedula ="",nombre="";
+            String imp = "",cedula ="",nombre="",email="";
             if (edTCant.getText().toString().equals("")){
                 mensaje.MensajeAdvertencia(FacBanosActivity.this,"ADVERTENCIA","Debe ingresar la cantidad de Usos!!!");
                 return;
@@ -271,10 +274,10 @@ public class FacBanosActivity extends AppCompatActivity {
                 return;
             }
 
-            if (chkBoxImprimir.isChecked() && (edTCedula.getText().equals("") || edTCedula.getText().equals(""))){
-                mensaje.MensajeAdvertencia(FacBanosActivity.this,"ADVERTENCIA","Debe ingresar la cedula y el nombre del cliente!!!");
-                return;
-            }
+//            if (chkBoxImprimir.isChecked() && (edTCedula.getText().equals("") || edTCedula.getText().equals(""))){
+//                mensaje.MensajeAdvertencia(FacBanosActivity.this,"ADVERTENCIA","Debe ingresar la cedula y el nombre del cliente!!!");
+//                return;
+//            }
 
             dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault());
             date = new Date();
@@ -296,12 +299,27 @@ public class FacBanosActivity extends AppCompatActivity {
                 imp = "0";
 
             if (edTCedula.getText().toString().equals("")){
-                cedula= "0";
-                nombre= "S/R";
+                cedula= "222222222222";
+                edTCedula.setText("222222222222");
             }
             else{
                 cedula= edTCedula.getText().toString();
+            }
+
+            if (edTNombres.getText().toString().equals("")){
+                nombre= "CONSUMIDOR FINAL";
+                edTNombres.setText("CONSUMIDOR FINAL");
+            }
+            else {
                 nombre= edTNombres.getText().toString();
+            }
+
+            if (edTEmail.getText().toString().equals("")){
+                email= "cliente@sincorreo.com";
+                edTEmail.setText("cliente@sincorreo.com");
+            }
+            else {
+                email = edTEmail.getText().toString();
             }
 
 
@@ -326,6 +344,7 @@ public class FacBanosActivity extends AppCompatActivity {
             jsonBody.put("RBTOTFAC",txtVTotal.getText().toString().replace(".",""));
             jsonBody.put("RBCEDCLIENTE",cedula);
             jsonBody.put("RBNOMCLIENTE",nombre);
+            jsonBody.put("RBCORCLIENTE",email);
             jsonBody.put("RBIMPFACT",imp );
             jsonBody.put("RBPREFACT",Global.g_Resolucion.getFRPRERES());
             jsonBody.put("RBSESION",Global.g_User.getSesion());
@@ -354,14 +373,17 @@ public class FacBanosActivity extends AppCompatActivity {
                                     Global.g_Resolucion.setFRNUMFAC(Double.parseDouble(result[1].toString()));
                                     Global.g_NumFacFin = Double.parseDouble(result[1].toString());
                                     if (chkBoxImprimir.isChecked()) {
-                                        //imprimirFac();
-                                        imprimirFacKR5(host, port);
+                                        if (Global.g_Dispositivo.equals("P")){
+                                            imprimirFacKR5(host, port);
+                                        } else if (Global.g_Dispositivo.equals("K")){
+                                            imprimirFac();
+                                        }
                                     }
                                     else {
                                         limpiar();
                                     }
                                      mensaje.MensajeExitoso(FacBanosActivity.this, "Exitoso" , "factura grabada Exitosamente!!!");
-                                    limpiar();
+                                    //limpiar();
                                 }
                                 else {
                                     mensaje.MensajeAdvertencia(FacBanosActivity.this, "Advertencia" ,
@@ -449,6 +471,11 @@ public class FacBanosActivity extends AppCompatActivity {
             mensaje.MensajeAdvertencia(FacBanosActivity.this, "Advertencia", "Datos puerto de la impresora vacio, no se puede imprimir");
             return;
         }
+
+        int valor = Integer.parseInt(txtVValor.getText().toString());
+        int iva = Integer.parseInt(txtVIva.getText().toString());
+        int total = Integer.parseInt(txtVTotal.getText().toString());
+
         //handler.post(myRunnable);
         final Thread thread = new Thread(new Runnable() {
             @Override
@@ -508,14 +535,16 @@ public class FacBanosActivity extends AppCompatActivity {
                         //escPos.writeLF(title, Global.g_NomEmp)
                         escPos.writeLF(subtitle, Global.g_NomEmp)
                                 .writeLF(center, "Nit." + Global.g_Nit)
+                                .writeLF(center, "Agente Retenedor de IVA")
                                 .writeLF(center, "----------------------------------")
-                                .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
-                                .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
-                                        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
-                                .writeLF(subtitle, "REGIMEN COMUN")
+                                .writeLF(subtitle, "COMPROBANTE DE RECAUDO")
+                                //.writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
+                                //.writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                //        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
+                                //.writeLF(subtitle, "REGIMEN COMUN")
                                 .feed(1)
                                 .writeLF(fecha)
-                                .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                //.writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
                                 //.write(bold, "Caja: " + Global.g_Caja)
                                 //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
@@ -525,6 +554,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 //.feed(1)
                                 .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
                                 .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
+                                .writeLF("Correo cliente: " + edTEmail.getText().toString())
                                 .feed(1)
                                 .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
                                 .writeLF(center,"----------------------------------------------")
@@ -533,12 +563,15 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .write(String.format(" %11s", NumberFormat.getInstance().format(Global.g_ValorConcep)))
                                 .writeLF(String.format(" %9s", txtVTotal.getText()))
                                 .feed(1)
-                                .writeLF(String.format("SUBTOTAL       %28s", txtVValor.getText()))
-                                .writeLF(String.format("IVA            %28s", txtVIva.getText()))
-                                .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
+                                .writeLF(String.format("SUBTOTAL       %28s", valor))
+                                .writeLF(String.format("IVA            %28s", iva))
+                                .writeLF(String.format("TOTAL          %28s", total))
                                 //.feed(1)
                                 .writeLF(center,"----------------------------------------------")
-                                //.writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                                .writeLF(resolucion, "Fabricante de Software:")
+                                .writeLF(resolucion, "Consultores Tecnológicos S.A.S")
+                                .writeLF(resolucion, "Nit 809.007.347-7")
+                                .writeLF(resolucion, "Software FETickets")
                                 .feed(2)
                                 .cut(EscPos.CutMode.FULL);
                         //escPos.feed(1);
@@ -550,6 +583,7 @@ public class FacBanosActivity extends AppCompatActivity {
                         escPos.writeLF(subtitle, Global.g_NomEmp)
                                 .writeLF(center, "Nit." + Global.g_Nit)
                                 .writeLF(center, Global.g_DirEmp)
+                                .writeLF(center, "Agente Retenedor de IVA")
                                 .writeLF(center, "----------------------------------")
                                 .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
@@ -581,7 +615,10 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(String.format("TOTAL          %28s", txtVTotal.getText()))
                                 //.feed(1)
                                 .writeLF(center,"----------------------------------------------")
-                                //.writeLF(resolucion, "Desarrollado Consultores Tecnologicos S.A.S")
+                                .writeLF(resolucion, "Fabricante de Software:")
+                                .writeLF(resolucion, "Consultores Tecnológicos S.A.S")
+                                .writeLF(resolucion, "Nit 809.007.347-7")
+                                .writeLF(resolucion, "Software FETickets")
                                 .feed(2)
                                 .cut(EscPos.CutMode.FULL);
                         //escPos.feed(1);
@@ -609,6 +646,11 @@ public class FacBanosActivity extends AppCompatActivity {
             printerDevice.open();
             handler.post(myRunnable);
             format = new Format();
+
+            int valor = Integer.parseInt(txtVValor.getText().toString());
+            int iva = Integer.parseInt(txtVIva.getText().toString());
+            int total = Integer.parseInt(txtVTotal.getText().toString());
+
             try {
                 if (printerDevice.queryStatus() == PrinterDevice.STATUS_OUT_OF_PAPER) {
                     handler.post(myRunnable);
@@ -644,20 +686,27 @@ public class FacBanosActivity extends AppCompatActivity {
                                 printerDevice.printBitmap(format,bitmap);
                                 printerDevice.printText(format, Global.g_NomEmp );
                                 printerDevice.printText(format, "Nit." + Global.g_Nit );
+                                printerDevice.printText(format, "Agente Retenedor de IVA");
                                 printerDevice.printText(format, "--------------------------------" );
 
                                 printerDevice.printText("\n");
                                 format.clear();
 
                                 format.setParameter("align", "center");
-                                format.setParameter("size", "small");
-                                printerDevice.printText(format, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES());
-                                printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
-                                                                    +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
-                                printerDevice.printText(format,"REGIME COMUN");
+                                format.setParameter("bold", "true");
+                                format.setParameter("size", "medium");
+                                printerDevice.printText(format, "COMPROBANTE DE RECAUDO");
+
+                                //format.setParameter("align", "center");
+                                //format.setParameter("size", "small");
+                                //printerDevice.printText(format, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES());
+                                //printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                //                                    +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
+                                //printerDevice.printText(format,"REGIME COMUN");
 
                                 printerDevice.printText("\n");
                                 printerDevice.printText("\n");
+                                format.clear();
 
                                 format.setParameter("align", "left");
                                 format.setParameter("size", "medium");
@@ -682,8 +731,8 @@ public class FacBanosActivity extends AppCompatActivity {
                                 cadena = String.format("%s",dateFormat.getDateInstance().format(date) + " " + cadena);
                                 printerDevice.printText(format, cadena );
 
-                                cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
-                                printerDevice.printText(format, cadena+" \n" );
+                                //cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                //printerDevice.printText(format, cadena+" \n" );
 
                                 cadena = String.format("Ubicacion:%.24s",Global.g_NomUbica );
                                 printerDevice.printText(format, cadena+" \n" );
@@ -699,13 +748,17 @@ public class FacBanosActivity extends AppCompatActivity {
                                     format.setParameter("bold", "true");
                                     format.setParameter("size", "medium");
                                     printerDevice.printText(format, "CLIENTE" );
+                                    printerDevice.printText("\n");
+                                    printerDevice.printText("\n");
 
                                     format.setParameter("align", "left");
                                     format.setParameter("size", "medium");
 
                                     cadena = String.format("Cedula:%.11s", edTCedula.getText().toString());
-                                    printerDevice.printText(format, cadena + " \n\n");
+                                    printerDevice.printText(format, cadena + " \n");
                                     cadena = String.format("Nombre:%.30s", edTNombres.getText().toString());
+                                    printerDevice.printText(format, cadena + " \n");
+                                    cadena = String.format("Correo:%.30s", edTEmail.getText().toString());
                                     printerDevice.printText(format, cadena + " \n\n");
                                 }
 
@@ -736,13 +789,13 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.setParameter("size", "medium");
                                 printerDevice.printText("\n");
 
-                                cadena = String.format("SUBTOTAL             %11s",txtVValor.getText());
+                                cadena = String.format("SUBTOTAL             %11s",valor);
                                 printerDevice.printText(format, cadena );
 
-                                cadena = String.format("IVA                  %11s",txtVIva.getText());
+                                cadena = String.format("IVA                  %11s",iva);
                                 printerDevice.printText(format, cadena );
 
-                                cadena = String.format("TOTAL                %11s",txtVTotal.getText());
+                                cadena = String.format("TOTAL                %11s",total);
                                 printerDevice.printText(format, cadena );
 
                                 printerDevice.printText(format, "\n" );
@@ -751,7 +804,10 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.clear();
                                 format.setParameter("align", "center");
                                 format.setParameter("size", "extra-small");
-                                printerDevice.printText(format, "FacBanos. Consultores Tecnologicos S.A.S\n" );
+                                printerDevice.printText(format, "Fabricante de Software:");
+                                printerDevice.printText(format, "Consultores Tecnologicos S.A.S \n");
+                                printerDevice.printText(format, "Nit 809.007.347-7 \n");
+                                printerDevice.printText(format, "Software FETickets \n" );
 
                                 //Verifica que exita papel
                                 if (printerDevice.queryStatus() == 0)
@@ -794,8 +850,6 @@ public class FacBanosActivity extends AppCompatActivity {
                             } finally {
                                 closePrinter();
                             }
-
-
                         }
                     });
                     thread.start();
@@ -942,8 +996,8 @@ public class FacBanosActivity extends AppCompatActivity {
         chkBoxImprimir.setEnabled(false);
         edTCedula.setEnabled(true);
         edTNombres.setEnabled(true);
-        edTCedula.setText("1");
-        edTNombres.setText("N/A");
-
+        edTCedula.setText("");
+        edTNombres.setText("");
+        edTEmail.setText("");
     }
 }

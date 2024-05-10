@@ -17,7 +17,7 @@ public class ConfigActivity extends Activity {
 
     Mensaje mensaje;
     SweetAlertDialog sweetAlertDialog;
-    EditText edTDirecApi,edTCaja,edTNomUbica,edTHost,edTPort;
+    EditText edTDirecApi,edTCaja,edTNomUbica,edTHost,edTPort, edTDispositivo;
     Button btnGrabar,btnSalir;
 
     @Override
@@ -33,6 +33,7 @@ public class ConfigActivity extends Activity {
         edTNomUbica = findViewById(R.id.edTNomUbica);
         edTHost = findViewById(R.id.edTHost);
         edTPort = findViewById(R.id.edTPort);
+        edTDispositivo = findViewById(R.id.edTDispositivo);
         btnGrabar = findViewById(R.id.btnGrabar);
         btnSalir =  findViewById(R.id.btnSalir);
 
@@ -102,6 +103,11 @@ public class ConfigActivity extends Activity {
             if (!Global.g_portImp.equals("") && !Global.g_portImp.equals("-1")) {
                 edTPort.setText(Global.g_portImp);
             }
+
+            Global.g_Dispositivo = readPreference("Dispositivo");
+            if (!Global.g_Dispositivo.equals("") && !Global.g_Dispositivo.equals("-1")){
+                edTDispositivo.setText(Global.g_Dispositivo);
+            }
         }
         catch(Exception ex){
             mensaje.MensajeAdvertencia(ConfigActivity.this,"Advertencia",ex.getMessage());
@@ -153,6 +159,11 @@ public class ConfigActivity extends Activity {
 
                 if (!writePreference("Port", edTPort.getText().toString())) {
                     mensaje.MensajeAdvertencia(ConfigActivity.this, "Advertencia", "Inconvenientes al grabar el puerto de la impresora");
+                    return;
+                }
+
+                if (!writePreference("Dispositivo", edTDispositivo.getText().toString())){
+                    mensaje.MensajeAdvertencia(ConfigActivity.this, "Advertencia", "Inconvenientes al grabar el tipo de dispositivo");
                     return;
                 }
 

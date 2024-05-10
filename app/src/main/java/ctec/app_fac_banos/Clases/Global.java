@@ -46,6 +46,7 @@ public class Global {
     //Datos Impresora
     public static String g_HostImp;
     public static String g_portImp;
+    public static String g_Dispositivo;
 
 
     public static Bitmap encode(String contents, int width, int height) {

@@ -288,6 +288,12 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
 
+            Global.g_Dispositivo = readPreference("Dispositivo");
+            if (Global.g_Dispositivo.equals("") || Global.g_Dispositivo.equals("-1")){
+                mensaje.MensajeAdvertencia(MainActivity.this, "Advertencia", "Dato Dispositivo vacio");
+                return false;
+            }
+
             /*Global.g_ValorConcep = Double.parseDouble(readPreference("ValConcep"));
             if ( Global.g_ValorConcep.equals("") || Global.g_ValorConcep.toString().equals("-1")) {
                 bandescarga = 0;
