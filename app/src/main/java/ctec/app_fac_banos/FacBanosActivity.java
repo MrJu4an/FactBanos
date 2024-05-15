@@ -538,7 +538,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(center, "Nit." + Global.g_Nit)
                                 .writeLF(center, "Agente Retenedor de IVA")
                                 .writeLF(center, "----------------------------------")
-                                .writeLF(subtitle, "COMPROBANTE DE RECAUDO")
+                                //.writeLF(subtitle, "COMPROBANTE DE RECAUDO")
                                 //.writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 //.writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                 //        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
@@ -547,6 +547,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .feed(1)
                                 .writeLF(fecha)
                                 //.writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                .writeLF("COMPROBANTE DE RECAUDO No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
                                 //.write(bold, "Caja: " + Global.g_Caja)
                                 //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
@@ -697,7 +698,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.setParameter("align", "center");
                                 format.setParameter("bold", "true");
                                 format.setParameter("size", "medium");
-                                printerDevice.printText(format, "COMPROBANTE DE RECAUDO");
+                                //printerDevice.printText(format, "COMPROBANTE DE RECAUDO");
 
                                 //format.setParameter("align", "center");
                                 //format.setParameter("size", "small");
@@ -736,6 +737,9 @@ public class FacBanosActivity extends AppCompatActivity {
 
                                 //cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
                                 //printerDevice.printText(format, cadena+" \n" );
+
+                                cadena = String.format("COMPROBANTE DE REC. No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                printerDevice.printText(format, cadena+" \n" );
 
                                 cadena = String.format("Ubicacion:%.24s",Global.g_NomUbica );
                                 printerDevice.printText(format, cadena+" \n" );
