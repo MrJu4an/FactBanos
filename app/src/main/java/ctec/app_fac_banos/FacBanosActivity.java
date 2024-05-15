@@ -557,7 +557,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 //.feed(1)
                                 .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
                                 .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
-                                .writeLF("Correo cliente: " + edTEmail.getText().toString())
+                                .writeLF("Correo Cliente: " + edTEmail.getText().toString())
                                 .feed(1)
                                 .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
                                 .writeLF(center,"----------------------------------------------")
