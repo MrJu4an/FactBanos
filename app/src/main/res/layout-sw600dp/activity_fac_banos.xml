@@ -14,7 +14,7 @@
 
 
         <EditText
-            android:id="@+id/edTEmail"
+            android:id="@+id/edTCelular"
             android:layout_width="335dp"
             android:layout_height="41dp"
             android:layout_marginStart="348dp"
@@ -23,8 +23,38 @@
             android:ems="10"
             android:enabled="true"
             android:imeOptions="actionDone"
-            android:inputType="text"
+            android:inputType="phone"
             android:nextFocusForward="@id/edTPriApe"
+            android:selectAllOnFocus="false"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVTiquete4" />
+
+        <TextView
+            android:id="@+id/txtVTiquete4"
+            android:layout_width="144dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="348dp"
+            android:layout_marginTop="8dp"
+            android:text="Celular"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edTEmail" />
+
+        <EditText
+            android:id="@+id/edTEmail"
+            android:layout_width="335dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="348dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edit_text"
+            android:ems="10"
+            android:enabled="true"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:nextFocusForward="@id/edTCelular"
             android:selectAllOnFocus="false"
             android:textAlignment="viewStart"
             android:textSize="16sp"
@@ -36,7 +66,7 @@
             android:layout_width="144dp"
             android:layout_height="27dp"
             android:layout_marginStart="348dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="Correo Elec."
             android:textColor="@android:color/black"
             android:textSize="22sp"
@@ -82,12 +112,12 @@
             android:id="@+id/btnGrabar"
             android:layout_width="228dp"
             android:layout_height="53dp"
-            android:layout_marginStart="400dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="396dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btnverde"
             android:text="Grabar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/edTCelular" />
 
         <TextView
             android:id="@+id/txtlblCaja"

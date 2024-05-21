@@ -61,7 +61,7 @@ import ctec.app_fac_banos.Clases.Mensaje;
 
 public class FacBanosActivity extends AppCompatActivity {
 
-    EditText edTCant,edTCedula,edTNombres,edTEmail;
+    EditText edTCant,edTCedula,edTNombres,edTEmail, edTCelular;
     TextView txtVCaja,txtVuser,txtVValor,txtVIva,txtVTotal,txtVFecha;
     Button btnGrabar;
     CheckBox chkBoxImprimir;
@@ -90,6 +90,7 @@ public class FacBanosActivity extends AppCompatActivity {
         edTCedula = findViewById(R.id.edTCedula);
         edTNombres = findViewById(R.id.edTNombres);
         edTEmail = findViewById(R.id.edTEmail);
+        edTCelular = findViewById(R.id.edTCelular);
         edTCant = findViewById(R.id.edTCant);
         txtVCaja = findViewById(R.id.txtVUsuario);
         txtVuser = findViewById(R.id.txtVuser);
@@ -111,6 +112,7 @@ public class FacBanosActivity extends AppCompatActivity {
         edTCedula.setText("");
         edTNombres.setText("");
         edTEmail.setText("");
+        edTCelular.setText("");
         edTCant.setText("1");
 
         listaConcept = new ArrayList<String>();
@@ -264,7 +266,7 @@ public class FacBanosActivity extends AppCompatActivity {
 
     private void grabarFactura(){
         try{
-            String imp = "",cedula ="",nombre="",email="";
+            String imp = "",cedula ="",nombre="",email="",celular="";
             if (edTCant.getText().toString().equals("")){
                 mensaje.MensajeAdvertencia(FacBanosActivity.this,"ADVERTENCIA","Debe ingresar la cantidad de Usos!!!");
                 return;
@@ -323,6 +325,13 @@ public class FacBanosActivity extends AppCompatActivity {
                 email = edTEmail.getText().toString();
             }
 
+            if (edTCelular.getText().toString().equals("")){
+                celular = "0";
+                edTCelular.setText("0");
+            } else {
+                celular = edTCelular.getText().toString();
+            }
+
 
             JSONObject jsonBody = new JSONObject();
 
@@ -346,6 +355,7 @@ public class FacBanosActivity extends AppCompatActivity {
             jsonBody.put("RBCEDCLIENTE",cedula);
             jsonBody.put("RBNOMCLIENTE",nombre);
             jsonBody.put("RBCORCLIENTE",email);
+            jsonBody.put("RBCELCLIENTE",celular);
             jsonBody.put("RBIMPFACT",imp );
             jsonBody.put("RBPREFACT",Global.g_Resolucion.getFRPRERES());
             jsonBody.put("RBSESION",Global.g_User.getSesion());
@@ -558,6 +568,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
                                 .writeLF("Nombre Cliente: " + edTNombres.getText().toString())
                                 .writeLF("Correo Cliente: " + edTEmail.getText().toString())
+                                .writeLF("Celular Cliente: " + edTCelular.getText().toString())
                                 .feed(1)
                                 .writeLF("   CONCEPTO        |CT|   VALOR C/U |   TOTAL")
                                 .writeLF(center,"----------------------------------------------")
@@ -708,12 +719,20 @@ public class FacBanosActivity extends AppCompatActivity {
                                 //printerDevice.printText(format, "Septiembre 21 de 2023  -  Vigencia de 12 Meses");
                                 //printerDevice.printText(format,"REGIME COMUN");
 
+                                cadena = String.format("COMPROBANTE DE RECAUDO");
+                                printerDevice.printText(format, cadena);
+
                                 printerDevice.printText("\n");
                                 printerDevice.printText("\n");
                                 format.clear();
 
                                 format.setParameter("align", "left");
                                 format.setParameter("size", "medium");
+
+                                //cadena = String.format("No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                cadena = String.format("No:%.24s", NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                printerDevice.printText(format, cadena);
+
                                 //Verifica que exita papel
                                 if (printerDevice.queryStatus() == 0)
                                     banImp = 1;
@@ -737,9 +756,6 @@ public class FacBanosActivity extends AppCompatActivity {
 
                                 //cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
                                 //printerDevice.printText(format, cadena+" \n" );
-
-                                cadena = String.format("COMPROBANTE DE REC. No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
-                                printerDevice.printText(format, cadena+" \n" );
 
                                 cadena = String.format("Ubicacion:%.24s",Global.g_NomUbica );
                                 printerDevice.printText(format, cadena+" \n" );
@@ -766,6 +782,8 @@ public class FacBanosActivity extends AppCompatActivity {
                                     cadena = String.format("Nombre:%.30s", edTNombres.getText().toString());
                                     printerDevice.printText(format, cadena + " \n");
                                     cadena = String.format("Correo:%.30s", edTEmail.getText().toString());
+                                    printerDevice.printText(format, cadena + " \n");
+                                    cadena = String.format("Celular:%.30s", edTCelular.getText().toString());
                                     printerDevice.printText(format, cadena + " \n\n");
                                 }
 
@@ -1006,6 +1024,7 @@ public class FacBanosActivity extends AppCompatActivity {
         edTCedula.setText("");
         edTNombres.setText("");
         edTEmail.setText("");
+        edTCelular.setText("");
         calcularValores();
     }
 }
