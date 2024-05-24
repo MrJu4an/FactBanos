@@ -3,6 +3,7 @@ package ctec.app_fac_banos;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.printservice.PrintService;
@@ -37,8 +38,13 @@ import com.cloudpos.printer.PrinterDeviceSpec;
 import com.github.anastaciocintra.escpos.EscPos;
 import com.github.anastaciocintra.escpos.EscPosConst;
 import com.github.anastaciocintra.escpos.Style;
+import com.github.anastaciocintra.escpos.barcode.BarCode;
 import com.github.anastaciocintra.output.TcpIpOutputStream;
 import com.google.gson.Gson;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.json.JSONObject;
 
@@ -52,6 +58,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ctec.app_fac_banos.Clases.Gedetsuptip;
@@ -487,6 +494,10 @@ public class FacBanosActivity extends AppCompatActivity {
         int iva = Integer.parseInt(txtVIva.getText().toString());
         int total = Integer.parseInt(txtVTotal.getText().toString());
 
+        String cufe = crearCUFE();
+        BarCode barCode = new BarCode();
+        String ivaText = "IVA 19%";
+
         //handler.post(myRunnable);
         final Thread thread = new Thread(new Runnable() {
             @Override
@@ -549,19 +560,22 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(center, "Agente Retenedor de IVA")
                                 .writeLF(center, "----------------------------------")
                                 //.writeLF(subtitle, "COMPROBANTE DE RECAUDO")
-                                //.writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
-                                //.writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
-                                //        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
-                                //.writeLF(resolucion, "Septiembre 21 de 2023  -  Vigencia de 12 Meses")
-                                //.writeLF(subtitle, "REGIMEN COMUN")
+                                .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
+                                .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                        +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
+                                .writeLF(resolucion, "Septiembre 21 de 2023  -  Vigencia de 12 Meses")
+                                .writeLF(subtitle, "REGIMEN COMUN")
                                 .feed(1)
                                 .writeLF(fecha)
-                                //.writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
-                                .writeLF("COMPROBANTE DE RECAUDO No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                //.writeLF("COMPROBANTE DE RECAUDO No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
+                                .writeLF("CUFE: " + cufe)
                                 //.write(bold, "Caja: " + Global.g_Caja)
                                 //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
                                 //.writeLF("Usuario: " + Global.g_User.getUsuario())
+                                .feed(1)
+                                .write(barCode, "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=" + cufe)
                                 .feed(1)
                                 //.writeLF(subtitle, "CLIENTE")
                                 //.feed(1)
@@ -578,7 +592,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(String.format(" %9s", txtVTotal.getText()))
                                 .feed(1)
                                 .writeLF(String.format("SUBTOTAL       %28s", valor))
-                                .writeLF(String.format("IVA            %28s", iva))
+                                .writeLF(String.format("%-20s          %28s", ivaText,iva))
                                 .writeLF(String.format("TOTAL          %28s", total))
                                 //.feed(1)
                                 .writeLF(center,"----------------------------------------------")
@@ -649,7 +663,8 @@ public class FacBanosActivity extends AppCompatActivity {
 
     /*Inicio Funciones para la impresionLibro*/
     public void imprimirFac() {
-
+        String cufe = crearCUFE();
+        Bitmap QR = generarCodigoQR("https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=" + cufe);
         try {
             banImp =0;
             if (printerDevice==null) {
@@ -711,16 +726,16 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.setParameter("size", "medium");
                                 //printerDevice.printText(format, "COMPROBANTE DE RECAUDO");
 
-                                //format.setParameter("align", "center");
-                                //format.setParameter("size", "small");
-                                //printerDevice.printText(format, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES());
-                                //printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
-                                //                                    +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
-                                //printerDevice.printText(format, "Septiembre 21 de 2023  -  Vigencia de 12 Meses");
-                                //printerDevice.printText(format,"REGIME COMUN");
+                                format.setParameter("align", "center");
+                                format.setParameter("size", "small");
+                                printerDevice.printText(format, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES());
+                                printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
+                                                                    +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
+                                printerDevice.printText(format, "Septiembre 21 de 2023  -  Vigencia de 12 Meses");
+                                printerDevice.printText(format,"REGIME COMUN");
 
-                                cadena = String.format("COMPROBANTE DE RECAUDO");
-                                printerDevice.printText(format, cadena);
+                                //cadena = String.format("COMPROBANTE DE RECAUDO");
+                                //printerDevice.printText(format, cadena);
 
                                 printerDevice.printText("\n");
                                 printerDevice.printText("\n");
@@ -730,8 +745,8 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.setParameter("size", "medium");
 
                                 //cadena = String.format("No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
-                                cadena = String.format("No:%.24s", NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
-                                printerDevice.printText(format, cadena);
+                                //cadena = String.format("No:%.24s", NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                //printerDevice.printText(format, cadena);
 
                                 //Verifica que exita papel
                                 if (printerDevice.queryStatus() == 0)
@@ -754,8 +769,8 @@ public class FacBanosActivity extends AppCompatActivity {
                                 cadena = String.format("%s",dateFormat.getDateInstance().format(date) + " " + cadena);
                                 printerDevice.printText(format, cadena );
 
-                                //cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
-                                //printerDevice.printText(format, cadena+" \n" );
+                                cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                printerDevice.printText(format, cadena+" \n" );
 
                                 cadena = String.format("Ubicacion:%.24s",Global.g_NomUbica );
                                 printerDevice.printText(format, cadena+" \n" );
@@ -764,7 +779,12 @@ public class FacBanosActivity extends AppCompatActivity {
                                 printerDevice.printText(format, cadena+" \n" );
 
                                 cadena = String.format("Usuario:%.26s",Global.g_User.getUsuario());
-                                printerDevice.printText(format, cadena+" \n\n" );
+                                printerDevice.printText(format, cadena+" \n" );
+
+                                cadena = String.format("CUFE:%50s", cufe);
+                                printerDevice.printText(format, cadena);
+
+                                printerDevice.printBitmap(format, QR);
 
                                 if (!edTCedula.getText().toString().equals("")) {
                                     format.setParameter("align", "center");
@@ -817,7 +837,8 @@ public class FacBanosActivity extends AppCompatActivity {
                                 cadena = String.format("SUBTOTAL             %11s",valor);
                                 printerDevice.printText(format, cadena );
 
-                                cadena = String.format("IVA                  %11s",iva);
+                                String ivaText = "IVA 19%";
+                                cadena = String.format("%-20s %11s",ivaText, iva);
                                 printerDevice.printText(format, cadena );
 
                                 cadena = String.format("TOTAL                %11s",total);
@@ -1009,6 +1030,54 @@ public class FacBanosActivity extends AppCompatActivity {
             return "-1";
         }
         return valor;
+    }
+
+    private String crearCUFE()
+    {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        // Objeto Random para generar números aleatorios
+        Random random = new Random();
+
+        // Crear un StringBuilder para construir el string alfanumérico
+        StringBuilder sb = new StringBuilder();
+
+        // Generar el string alfanumérico
+        for (int i = 0; i < 85; i++) {
+            // Generar un índice aleatorio entre 0 y el tamaño de la cadena de caracteres
+            int index = random.nextInt(characters.length());
+            // Obtener el carácter correspondiente al índice aleatorio y agregarlo al StringBuilder
+            sb.append(characters.charAt(index));
+        }
+
+        // Convertir el StringBuilder a String y mostrar el resultado
+        String alphanumeric = sb.toString();
+
+        return alphanumeric;
+    }
+
+    private Bitmap generarCodigoQR(String texto) {
+        try {
+            // Configurar los parámetros para generar el código QR
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(texto, BarcodeFormat.QR_CODE, 300, 300);
+
+            // Convertir la matriz de bits en un bitmap
+            int width = bitMatrix.getWidth();
+            int height = bitMatrix.getHeight();
+            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+
+            return bitmap;
+        } catch (WriterException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private void limpiar (){
