@@ -49,6 +49,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -535,13 +536,20 @@ public class FacBanosActivity extends AppCompatActivity {
                     //else if(hora==12)
                         //fecha =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
                     //else
-                    String fecha="";
-                    String hora="";
+                    String fechaGeneracion="";
+                    String horaGeneracion="";
                     dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
-                    hora = dateFormat.getTimeInstance().format(date);
+                    horaGeneracion = dateFormat.getTimeInstance().format(date);
                     //hora =  dateFormat.getTimeInstance().format(date).substring(0, 5);
-                    fecha = String.format("%s",dateFormat.getDateInstance().format(date) + " " + hora);
+                    fechaGeneracion = String.format("%s",dateFormat.getDateInstance().format(date) + " " + horaGeneracion);
 
+                    String fechaExpedicion="";
+                    String horaExpedicion="";
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.SECOND, 10);
+                    dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
+                    horaExpedicion = dateFormat.format(calendar.getTime());
+                    fechaExpedicion = String.format("%s", dateFormat.getDateInstance().format(calendar.getTime()) + " " + horaExpedicion);
                     String concepto = "";
                     concepto = String.format("%s",Global.g_NomConcepto);
                     /*if(concepto.length() > 17)
@@ -552,6 +560,8 @@ public class FacBanosActivity extends AppCompatActivity {
                     if (concepto.equals("USO BAÑO"))
                         concepto = "USO BANO";
 
+                    DecimalFormat formato = new DecimalFormat("######");
+
                     //Impresion Factura
                     if (Global.g_NomEmp.toUpperCase().contains("PEREIRA")){
                         //escPos.writeLF(title, Global.g_NomEmp)
@@ -560,14 +570,18 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(center, "Agente Retenedor de IVA")
                                 .writeLF(center, "----------------------------------")
                                 //.writeLF(subtitle, "COMPROBANTE DE RECAUDO")
+                                .writeLF(center, "FACTURA ELECTRONICA DE VENTA")
+                                .writeLF(center, Global.g_Resolucion.getFRPRERES() + " - " + formato.format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                         +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
                                 .writeLF(resolucion, "Septiembre 21 de 2023  -  Vigencia de 12 Meses")
                                 .writeLF(subtitle, "REGIMEN COMUN")
                                 .feed(1)
-                                .writeLF(fecha)
-                                .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                .writeLF("FECHA DE GENERACION: " + fechaGeneracion)
+                                .writeLF("FECHA DE EXPEDICION: " + fechaExpedicion)
+                                //.writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + " - " + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
+                                .writeLF("FORMA DE PAGO: CONTADO - EFECTIVO")
                                 //.writeLF("COMPROBANTE DE RECAUDO No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
                                 .writeLF("CUFE: " + cufe)
@@ -591,13 +605,15 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .write(String.format(" %11s", NumberFormat.getInstance().format(Global.g_ValorConcep)))
                                 .writeLF(String.format(" %9s", txtVTotal.getText()))
                                 .feed(1)
+                                .writeLF("TOTAL ITEMS: " + edTCant.getText())
+                                .feed(1)
                                 .writeLF(String.format("SUBTOTAL       %28s", valor))
                                 .writeLF(String.format("%-20s          %28s", ivaText,iva))
                                 .writeLF(String.format("TOTAL          %28s", total))
                                 //.feed(1)
                                 .writeLF(center,"----------------------------------------------")
                                 .writeLF(resolucion, "Fabricante de Software:")
-                                .writeLF(resolucion, "Consultores Tecnológicos S.A.S")
+                                .writeLF(resolucion, "Consultores Tecnologicos S.A.S")
                                 .writeLF(resolucion, "Nit 809.007.347-7")
                                 .writeLF(resolucion, "Software FETickets")
                                 .feed(2)
@@ -619,7 +635,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(resolucion, "Fecha resol. " + Global.g_Resolucion.getFRFECEMI())
                                 .writeLF(subtitle, "REGIMEN COMUN")
                                 .feed(1)
-                                .writeLF(fecha)
+                                .writeLF(fechaGeneracion)
                                 .writeLF("FACT. VENTA POS No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF("Ubicacion: " + ubicacion )
                                 .write(bold, "Maquina: " + Global.g_Caja)
@@ -707,12 +723,12 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.setParameter("size", "medium");
                                 printerDevice.printText("\n");
                                 printerDevice.printText("\n");
-                                printerDevice.printText(format, "SISTEMA POS" );
+                                //printerDevice.printText(format, "SISTEMA POS" );
                                 Bitmap bitmap = BitmapFactory.decodeResource(FacBanosActivity.this.getResources(),
                                         R.drawable.logoterminalpereira);
                                 format.clear();
                                 format.setParameter("align", "center");
-                                printerDevice.printBitmap(format,bitmap);
+                                //printerDevice.printBitmap(format,bitmap);
                                 printerDevice.printText(format, Global.g_NomEmp );
                                 printerDevice.printText(format, "Nit." + Global.g_Nit );
                                 printerDevice.printText(format, "Agente Retenedor de IVA");
@@ -724,6 +740,9 @@ public class FacBanosActivity extends AppCompatActivity {
                                 format.setParameter("align", "center");
                                 format.setParameter("bold", "true");
                                 format.setParameter("size", "medium");
+                                DecimalFormat formato = new DecimalFormat("######");
+                                printerDevice.printText(format, "FACTURA ELECTRONICA DE VENTA");
+                                printerDevice.printText(format, Global.g_Resolucion.getFRPRERES() + " - " + formato.format(Global.g_Resolucion.getFRNUMFAC()));
                                 //printerDevice.printText(format, "COMPROBANTE DE RECAUDO");
 
                                 format.setParameter("align", "center");
@@ -732,7 +751,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                                                     +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
                                 printerDevice.printText(format, "Septiembre 21 de 2023  -  Vigencia de 12 Meses");
-                                printerDevice.printText(format,"REGIME COMUN");
+                                printerDevice.printText(format,"REGIMEN COMUN");
 
                                 //cadena = String.format("COMPROBANTE DE RECAUDO");
                                 //printerDevice.printText(format, cadena);
@@ -760,26 +779,51 @@ public class FacBanosActivity extends AppCompatActivity {
                                 hora = Integer.parseInt(cadena.substring(0, 2));
 
                                 if(hora>12)
-                                    cadena =  "" + String.format("%2s",(hora-12)) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
+                                    cadena =  "" + String.format("%2s",(hora-12)) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 8) + " pm" ;
                                 else if(hora==12)
-                                    cadena =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 5) + " pm" ;
+                                    cadena =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 8) + " pm" ;
                                 else
-                                    cadena =  dateFormat.getTimeInstance().format(date).substring(0, 5) + " am" ;
+                                    cadena =  dateFormat.getTimeInstance().format(date).substring(0, 8) + " am" ;
 
-                                cadena = String.format("%s",dateFormat.getDateInstance().format(date) + " " + cadena);
+                                cadena = String.format("FECHA DE GENERACION: \n %24s",dateFormat.getDateInstance().format(date) + " " + cadena);
                                 printerDevice.printText(format, cadena );
 
-                                cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
-                                printerDevice.printText(format, cadena+" \n" );
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.add(Calendar.SECOND, 10);
+                                dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
+                                cadena = dateFormat.getTimeInstance().format(calendar.getTime());
+                                parts = cadena.split(":");
+                                if (parts[0].length()==1)
+                                    cadena = "0"+cadena;
+                                hora = Integer.parseInt(cadena.substring(0, 2));
+
+                                if(hora>12)
+                                    cadena =  "" + String.format("%2s",(hora-12)) +":"+ dateFormat.getTimeInstance().format(calendar.getTime()).substring(3, 8) + " pm" ;
+                                else if(hora==12)
+                                    cadena =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(calendar.getTime()).substring(3, 8) + " pm" ;
+                                else
+                                    cadena =  dateFormat.getTimeInstance().format(calendar.getTime()).substring(0, 8) + " am" ;
+
+                                cadena = String.format("FECHA DE EXPEDICION: \n %24s",dateFormat.getDateInstance().format(calendar.getTime()) + " " + cadena);
+                                printerDevice.printText(format, cadena );
+
+                                //cadena = String.format("FACT. VENTA No:%.24s",Global.g_Resolucion.getFRPRERES() + " - " + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()));
+                                //printerDevice.printText(format, cadena+" \n" );
+
+                                cadena = String.format("FORMA PAGO: CONTADO - EFECTIVO");
+                                printerDevice.printText(format, cadena+" \n");
 
                                 cadena = String.format("Ubicacion:%.24s",Global.g_NomUbica );
                                 printerDevice.printText(format, cadena+" \n" );
 
-                                cadena = String.format("Caja:%.6s Cod Usu:%.16s",Global.g_Caja,Global.g_Usuario);
+                                //cadena = String.format("Caja:%.6s Cod Usu:%.16s",Global.g_Caja,Global.g_Usuario);
+                                //printerDevice.printText(format, cadena+" \n" );
+
+                                cadena = String.format("Caja:%.6s",Global.g_Caja);
                                 printerDevice.printText(format, cadena+" \n" );
 
                                 cadena = String.format("Usuario:%.26s",Global.g_User.getUsuario());
-                                printerDevice.printText(format, cadena+" \n" );
+                                printerDevice.printText(format, cadena+" \n\n" );
 
                                 cadena = String.format("CUFE:%50s", cufe);
                                 printerDevice.printText(format, cadena);
@@ -828,6 +872,9 @@ public class FacBanosActivity extends AppCompatActivity {
                                 cadena = cadena + String.format(" %8s",txtVTotal.getText());
 
                                 printerDevice.printText(format, cadena+" \n\n" );
+
+                                cadena = String.format("TOTAL ITEMS: %2s", edTCant.getText());
+                                printerDevice.printText(format, cadena+" \n\n");
 
                                 format.clear();
                                 format.setParameter("align", "left");
