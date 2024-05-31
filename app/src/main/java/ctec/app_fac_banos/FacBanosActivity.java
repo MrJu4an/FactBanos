@@ -39,6 +39,9 @@ import com.github.anastaciocintra.escpos.EscPos;
 import com.github.anastaciocintra.escpos.EscPosConst;
 import com.github.anastaciocintra.escpos.Style;
 import com.github.anastaciocintra.escpos.barcode.BarCode;
+import com.github.anastaciocintra.escpos.barcode.PDF417;
+import com.github.anastaciocintra.escpos.barcode.QRCode;
+import com.github.anastaciocintra.output.PrinterOutputStream;
 import com.github.anastaciocintra.output.TcpIpOutputStream;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -392,10 +395,14 @@ public class FacBanosActivity extends AppCompatActivity {
                                     Global.g_Resolucion.setFRNUMFAC(Double.parseDouble(result[1].toString()));
                                     Global.g_NumFacFin = Double.parseDouble(result[1].toString());
                                     if (chkBoxImprimir.isChecked()) {
-                                        if (Global.g_Dispositivo.equals("P")){
-                                            imprimirFacKR5(host, port);
-                                        } else if (Global.g_Dispositivo.equals("K")){
-                                            imprimirFac();
+                                        if (edTCedula.getText().toString().equals("222222222222")){
+                                            if (Global.g_Dispositivo.equals("P")){
+                                                imprimirFacKR5(host, port);
+                                            } else if (Global.g_Dispositivo.equals("K")){
+                                                imprimirFac();
+                                            }
+                                        } else {
+                                            limpiar();
                                         }
                                     }
                                     else {
@@ -496,7 +503,9 @@ public class FacBanosActivity extends AppCompatActivity {
         int total = Integer.parseInt(txtVTotal.getText().toString());
 
         String cufe = crearCUFE();
-        BarCode barCode = new BarCode();
+        QRCode qrCode = new QRCode();
+        qrCode.setSize(7);
+        qrCode.setJustification(EscPosConst.Justification.Center);
         String ivaText = "IVA 19%";
 
         //handler.post(myRunnable);
@@ -549,7 +558,7 @@ public class FacBanosActivity extends AppCompatActivity {
                     calendar.add(Calendar.SECOND, 10);
                     dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
                     horaExpedicion = dateFormat.format(calendar.getTime());
-                    fechaExpedicion = String.format("%s", dateFormat.getDateInstance().format(calendar.getTime()) + " " + horaExpedicion);
+                    fechaExpedicion = String.format("%s", horaExpedicion);
                     String concepto = "";
                     concepto = String.format("%s",Global.g_NomConcepto);
                     /*if(concepto.length() > 17)
@@ -575,7 +584,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(resolucion, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES())
                                 .writeLF(resolucion, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                         +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()))
-                                .writeLF(resolucion, "Septiembre 21 de 2023  -  Vigencia de 12 Meses")
+                                .writeLF(resolucion, "Mayo 20 de 2024  -  Vigencia de 24 Meses")
                                 .writeLF(subtitle, "REGIMEN COMUN")
                                 .feed(1)
                                 .writeLF("FECHA DE GENERACION: " + fechaGeneracion)
@@ -584,13 +593,14 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF("FORMA DE PAGO: CONTADO - EFECTIVO")
                                 //.writeLF("COMPROBANTE DE RECAUDO No: " + Global.g_Resolucion.getFRPRERES() + "" + NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFAC()))
                                 .writeLF("Ubicacion: BANOS " + Global.g_NomUbica.substring(6) )
+                                .writeLF("Usuario: " + Global.g_User.getUsuario())
+                                .feed(1)
                                 .writeLF("CUFE: " + cufe)
                                 //.write(bold, "Caja: " + Global.g_Caja)
                                 //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
-                                //.writeLF("Usuario: " + Global.g_User.getUsuario())
-                                .feed(1)
-                                .write(barCode, "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=" + cufe)
-                                .feed(1)
+                                .feed(2)
+                                .write(qrCode, "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=" + cufe)
+                                .feed(2)
                                 //.writeLF(subtitle, "CLIENTE")
                                 //.feed(1)
                                 .writeLF("Cedula Cliente: " + edTCedula.getText().toString())
@@ -608,7 +618,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF("TOTAL ITEMS: " + edTCant.getText())
                                 .feed(1)
                                 .writeLF(String.format("SUBTOTAL       %28s", valor))
-                                .writeLF(String.format("%-20s          %28s", ivaText,iva))
+                                .writeLF(String.format("%-20s          %18s", ivaText,iva))
                                 .writeLF(String.format("TOTAL          %28s", total))
                                 //.feed(1)
                                 .writeLF(center,"----------------------------------------------")
@@ -616,7 +626,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 .writeLF(resolucion, "Consultores Tecnologicos S.A.S")
                                 .writeLF(resolucion, "Nit 809.007.347-7")
                                 .writeLF(resolucion, "Software FETickets")
-                                .feed(2)
+                                .feed(3)
                                 .cut(EscPos.CutMode.FULL);
                         //escPos.feed(1);
 
@@ -750,7 +760,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 printerDevice.printText(format, "Res. DIAN " + Global.g_Resolucion.getFRNUMRES());
                                 printerDevice.printText(format, "RANGO DEL "+ NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMINI())
                                                                     +" AL " +  NumberFormat.getInstance().format(Global.g_Resolucion.getFRNUMFIN()));
-                                printerDevice.printText(format, "Septiembre 21 de 2023  -  Vigencia de 12 Meses");
+                                printerDevice.printText(format, "Mayo 20 de 2024  -  Vigencia de 24 Meses");
                                 printerDevice.printText(format,"REGIMEN COMUN");
 
                                 //cadena = String.format("COMPROBANTE DE RECAUDO");
@@ -783,7 +793,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 else if(hora==12)
                                     cadena =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(date).substring(3, 8) + " pm" ;
                                 else
-                                    cadena =  dateFormat.getTimeInstance().format(date).substring(0, 8) + " am" ;
+                                    cadena =  dateFormat.getTimeInstance().format(date).substring(0, 7) + " am" ;
 
                                 cadena = String.format("FECHA DE GENERACION: \n %24s",dateFormat.getDateInstance().format(date) + " " + cadena);
                                 printerDevice.printText(format, cadena );
@@ -802,7 +812,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 else if(hora==12)
                                     cadena =  "" + (hora) +":"+ dateFormat.getTimeInstance().format(calendar.getTime()).substring(3, 8) + " pm" ;
                                 else
-                                    cadena =  dateFormat.getTimeInstance().format(calendar.getTime()).substring(0, 8) + " am" ;
+                                    cadena =  dateFormat.getTimeInstance().format(calendar.getTime()).substring(0, 7) + " am" ;
 
                                 cadena = String.format("FECHA DE EXPEDICION: \n %24s",dateFormat.getDateInstance().format(calendar.getTime()) + " " + cadena);
                                 printerDevice.printText(format, cadena );
@@ -1081,7 +1091,7 @@ public class FacBanosActivity extends AppCompatActivity {
 
     private String crearCUFE()
     {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
 
         // Objeto Random para generar números aleatorios
         Random random = new Random();
@@ -1090,7 +1100,7 @@ public class FacBanosActivity extends AppCompatActivity {
         StringBuilder sb = new StringBuilder();
 
         // Generar el string alfanumérico
-        for (int i = 0; i < 85; i++) {
+        for (int i = 0; i < 90; i++) {
             // Generar un índice aleatorio entre 0 y el tamaño de la cadena de caracteres
             int index = random.nextInt(characters.length());
             // Obtener el carácter correspondiente al índice aleatorio y agregarlo al StringBuilder

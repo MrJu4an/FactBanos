@@ -36,7 +36,7 @@
             android:layout_width="138dp"
             android:layout_height="29dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="8dp"
             android:text="Celular"
             android:textColor="@android:color/black"
             android:textSize="22sp"
@@ -48,23 +48,22 @@
             android:layout_width="138dp"
             android:layout_height="29dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
             android:text="Correo Elec."
             android:textColor="@android:color/black"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTCedula" />
+            app:layout_constraintTop_toBottomOf="@+id/edTCelular" />
 
         <Button
             android:id="@+id/btnGrabar"
             android:layout_width="228dp"
             android:layout_height="53dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/btnverde"
             android:text="Grabar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTCelular" />
+            app:layout_constraintTop_toBottomOf="@+id/edTEmail" />
 
         <EditText
             android:id="@+id/edTCant"
@@ -190,7 +189,7 @@
             android:id="@+id/edTEmail"
             android:layout_width="337dp"
             android:layout_height="42dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/border_edit_text"
             android:ems="10"

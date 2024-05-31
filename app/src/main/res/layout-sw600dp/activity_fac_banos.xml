@@ -36,12 +36,11 @@
             android:layout_width="144dp"
             android:layout_height="27dp"
             android:layout_marginStart="348dp"
-            android:layout_marginTop="8dp"
             android:text="Celular"
             android:textColor="@android:color/black"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/edTCedula" />
 
         <EditText
             android:id="@+id/edTEmail"
@@ -66,12 +65,12 @@
             android:layout_width="144dp"
             android:layout_height="27dp"
             android:layout_marginStart="348dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Correo Elec."
             android:textColor="@android:color/black"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTCedula" />
+            app:layout_constraintTop_toBottomOf="@+id/edTCelular" />
 
         <EditText
             android:id="@+id/edTCedula"
@@ -113,11 +112,11 @@
             android:layout_width="228dp"
             android:layout_height="53dp"
             android:layout_marginStart="396dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/btnverde"
             android:text="Grabar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edTCelular" />
+            app:layout_constraintTop_toBottomOf="@+id/edTEmail" />
 
         <TextView
             android:id="@+id/txtlblCaja"
