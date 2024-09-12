@@ -52,6 +52,9 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -85,6 +88,7 @@ public class FacBanosActivity extends AppCompatActivity {
     Mensaje mensaje;
     private PrinterDevice printerDevice;
     private Format format;
+    private String cufe;
 
 
     //Calendario para obtener fecha & hora
@@ -394,16 +398,17 @@ public class FacBanosActivity extends AppCompatActivity {
                                 if (result[0].equals("OK")){
                                     Global.g_Resolucion.setFRNUMFAC(Double.parseDouble(result[1].toString()));
                                     Global.g_NumFacFin = Double.parseDouble(result[1].toString());
+                                    cufe = result[2].toString();
                                     if (chkBoxImprimir.isChecked()) {
-                                        if (edTCedula.getText().toString().equals("222222222222")){
-                                            if (Global.g_Dispositivo.equals("P")){
-                                                imprimirFacKR5(host, port);
-                                            } else if (Global.g_Dispositivo.equals("K")){
-                                                imprimirFac();
-                                            }
-                                        } else {
-                                            limpiar();
+                                        //if (edTCedula.getText().toString().equals("222222222222")){
+                                        if (Global.g_Dispositivo.equals("P")){
+                                            imprimirFacKR5(host, port);
+                                        } else if (Global.g_Dispositivo.equals("K")){
+                                            imprimirFac();
                                         }
+                                        //} else {
+                                          //  limpiar();
+                                       // }
                                     }
                                     else {
                                         limpiar();
@@ -502,7 +507,7 @@ public class FacBanosActivity extends AppCompatActivity {
         int iva = Integer.parseInt(txtVIva.getText().toString());
         int total = Integer.parseInt(txtVTotal.getText().toString());
 
-        String cufe = crearCUFE();
+        //String cufe = crearCUFE();
         QRCode qrCode = new QRCode();
         qrCode.setSize(7);
         qrCode.setJustification(EscPosConst.Justification.Center);
@@ -599,7 +604,7 @@ public class FacBanosActivity extends AppCompatActivity {
                                 //.write(bold, "Caja: " + Global.g_Caja)
                                 //.writeLF(" Codigo Usuario: " + Global.g_Usuario)
                                 .feed(2)
-                                .write(qrCode, "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=" + cufe)
+                                .write(qrCode, "https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=" + cufe)
                                 .feed(2)
                                 //.writeLF(subtitle, "CLIENTE")
                                 //.feed(1)
@@ -689,8 +694,8 @@ public class FacBanosActivity extends AppCompatActivity {
 
     /*Inicio Funciones para la impresionLibro*/
     public void imprimirFac() {
-        String cufe = crearCUFE();
-        Bitmap QR = generarCodigoQR("https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=" + cufe);
+        //String cufe = crearCUFE();
+        Bitmap QR = generarCodigoQR("https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=" + cufe);
         try {
             banImp =0;
             if (printerDevice==null) {
@@ -1089,6 +1094,78 @@ public class FacBanosActivity extends AppCompatActivity {
         return valor;
     }
 
+    private String crearCufeReal(String factura, String fecha, String hora, String valor, String nit,
+                                 String adquirente, String technical_key, String pin) {
+
+        // Variables para parsear la fecha
+        String inputPattern = "dd/MM/yyyy";
+        String outputPattern = "yyyy-MM-dd";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        // Variables para parsear los valores
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+        String fecFac = "";
+        String horFac = hora + "-05:00";
+        String valBru = "";
+        String codImp1 = "01";
+        Double valImp1 = 0D;
+        String strValImp1 = "";
+        String codImp2 = "04";
+        Double valImp2 = 0D;
+        String strValImp2 = "";
+        String codImp3 = "03";
+        Double valImp3 = 0D;
+        String strValImp3 = "";
+        String valPag = "";
+        String tipAmb = "1";
+        try {
+            Date date = inputFormat.parse(fecha);
+            fecFac  = outputFormat.format(date);
+            valBru = decimalFormat.format(Double.parseDouble(valor)).replace(",",".");
+            strValImp1 = decimalFormat.format(Double.parseDouble(valImp1.toString())).replace(",", ".");
+            strValImp2 = decimalFormat.format(Double.parseDouble(valImp2.toString())).replace(",", ".");
+            strValImp3 = decimalFormat.format(Double.parseDouble(valImp3.toString())).replace(",", ".");
+            valPag = decimalFormat.format(Double.parseDouble(valor)).replace(",", ".");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String cadena = factura + fecFac + horFac + valBru + codImp1 + strValImp1 + codImp2 + strValImp2
+                + codImp3 + strValImp3 + valPag + nit + adquirente;
+
+        if (true) {
+            cadena += technical_key;
+        }
+        else {
+            cadena += pin;
+        }
+
+        cadena += tipAmb;
+
+        //Creamos el cufe
+        try {
+            // Creamos la instancia para SHA-384
+            MessageDigest sha384Hash = MessageDigest.getInstance("SHA-384");
+            // Convertimos la cadena en bytes usando UTF-8
+            byte[] sourceBytes = cadena.getBytes(StandardCharsets.UTF_8);
+            // Calculamos el hash
+            byte[] hashBytes = sha384Hash.digest(sourceBytes);
+
+            // Convertimos los bytes del hash a un string hexadecimal
+            StringBuilder hash = new StringBuilder();
+            for (byte b : hashBytes) {
+                hash.append(String.format("%02x", b));
+            }
+
+            return hash.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private String crearCUFE()
     {
         String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -1152,5 +1229,6 @@ public class FacBanosActivity extends AppCompatActivity {
         edTEmail.setText("");
         edTCelular.setText("");
         calcularValores();
+        cufe = "";
     }
 }
